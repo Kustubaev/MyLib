@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #8DC0BD;
+
+    &__themeBtn{
+        padding: 10px 20px;
+    }
+
+    &__themeBtn:hover{
+        color: #394e4c;
+        transition: 0.3s;
+    }
+}
