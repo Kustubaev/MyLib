@@ -1,11 +1,12 @@
-// .Navbar{
-//   display: flex;
-//   align-items: center;
-//   padding: 12px 72px;
-//   background-color: var(--navbar-bg-color);
-//   color: var(--primary-color);
-// }
+.navbar{
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: var(--navbar-bg-color);
+  color: var(--primary-color);
 
-// .user {
-//   margin: 0 0 0 auto;
-// }
+  &__ul {
+    display: flex;
+    flex-direction: row;
+  }
+}
