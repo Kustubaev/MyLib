@@ -63,7 +63,7 @@ export const Header: FC = () => {
         <NavbarItem>
           <Button
             onClick={() => {
-              navigate("/books/1")
+              navigate("/books/66882406473dda933726ecdf")
             }}
           >
             <span>О нас</span>
