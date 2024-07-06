@@ -1,6 +1,4 @@
 .gitignore
 package-lock.json
 package.json
-README.md
-settings.json
 tsconfig.json
