@@ -2,31 +2,35 @@ import { Input as NextInput } from "@nextui-org/react"
 import { FC } from "react"
 import { Control, useController } from "react-hook-form"
 
-type Props = {
+type InputProps = {
   name: string
   label: string
   placeholder?: string
   type?: string
-  control: Control<any>
+  value?: number | string | boolean
+  control?: Control<any>
   required?: string
   endContent?: JSX.Element
+  variant?: "flat" | "bordered" | "faded" | "underlined"
 }
 
-export const Input: FC<Props> = ({
+export const Input: FC<InputProps> = ({
   name,
   label,
   placeholder,
   type,
   control,
+  value,
   required = "",
   endContent,
+  variant = "bordered",
 }) => {
   const {
     field,
     fieldState: { invalid },
     formState: { errors },
   } = useController({
-    name,
+    name: `${name}`,
     control,
     rules: { required },
   })
@@ -37,11 +41,12 @@ export const Input: FC<Props> = ({
       label={label}
       type={type}
       placeholder={placeholder}
-      value={field.value}
-      name={field.name}
+      variant={variant}
+      value={field?.value}
+      name={field?.name}
       isInvalid={invalid}
-      onChange={field.onChange}
-      onBlur={field.onBlur}
+      onChange={field?.onChange}
+      onBlur={field?.onBlur}
       errorMessage={`${errors[name]?.message ?? ""}`}
       endContent={endContent}
     />

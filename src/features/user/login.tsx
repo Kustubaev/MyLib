@@ -7,7 +7,7 @@ import {
   useLoginMutation,
 } from "../../app/services/userApi"
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage"
-import { Input } from "../../components/Input/Index"
+import { Input } from "../../components/Input/Input"
 import { hasErrorField } from "../../utils/hasErrorField"
 
 type Login = {

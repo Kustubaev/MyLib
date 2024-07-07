@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useRegisterMutation } from "../../app/services/userApi"
 import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage"
-import { Input } from "../../components/Input/Index"
+import { Input } from "../../components/Input/Input"
 import { hasErrorField } from "../../utils/hasErrorField"
 
 type Register = {

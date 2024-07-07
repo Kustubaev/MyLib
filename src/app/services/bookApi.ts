@@ -1,13 +1,27 @@
 import { Book } from "../types"
 import { api } from "./api"
 
+interface CreateBookDataProps {
+  isPublic?: boolean
+  authorId?: number
+  pageCount?: number
+  title?: string
+  publishDate?: string
+  publishHouse?: string
+}
+
+interface CreateBookContentProps {
+  newData: CreateBookDataProps
+  genreId: string
+}
+
 export const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    createBook: builder.mutation<Book, { content: string }>({
-      query: (bookData) => ({
-        url: "/posts",
+    createBook: builder.mutation<Book, CreateBookContentProps>({
+      query: ({ newData, genreId }) => ({
+        url: `/Book/?genreId=${genreId}`,
         method: "POST",
-        body: bookData,
+        body: newData,
       }),
     }),
     getAllBooks: builder.query<Book[], void>({

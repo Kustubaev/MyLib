@@ -3,7 +3,7 @@ import React, { FC } from "react"
 import { Control, useController } from "react-hook-form"
 
 interface Option {
-  value: string | boolean
+  value: boolean
   name: string
 }
 
@@ -12,6 +12,10 @@ interface SelectProps {
   options?: Option[] | null
   className?: string
   onChange?: (value: string) => void
+
+  name?: string
+  control?: Control<any>
+  required?: string
 
   variant?: "flat" | "bordered" | "faded" | "underlined"
   color?: "default" | "primary" | "secondary" | "success" | "warning" | "danger"
@@ -44,12 +48,16 @@ interface SelectProps {
   >
 }
 
-export const Select: FC<SelectProps> = (props) => {
+export const SelectForm: FC<SelectProps> = (props) => {
   const {
     value,
     options,
     className,
     onChange,
+
+    name,
+    control,
+    required,
 
     isInvalid,
     variant = "bordered",
@@ -58,15 +66,29 @@ export const Select: FC<SelectProps> = (props) => {
     ...otherProps
   } = props
 
+  const {
+    field,
+    fieldState: { invalid },
+    formState: { errors },
+  } = useController({
+    name,
+    control,
+    rules: { required },
+  })
+
   return (
     <NSelect
       variant={variant}
       size={size}
+      id={name}
       label={label}
-      value={value}
-      isInvalid={isInvalid}
+      value={field.value}
+      name={field.name}
+      isInvalid={invalid}
+      onChange={field.onChange}
+      onBlur={field.onBlur}
+      errorMessage={`${errors[name as string]?.message ?? ""}`}
       className={className}
-      onChange={(e) => onChange && onChange(e.target.value)}
       {...otherProps}
     >
       (
