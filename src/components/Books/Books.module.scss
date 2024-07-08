@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.content {
+  &__left {
+    width: 79%;
+  }
+
+  &__right {
+    width: 20%;
+  }
+}
+
+.select {
+  margin-bottom: 1rem;
+}
