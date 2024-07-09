@@ -12,6 +12,7 @@ import { ErrorPage } from "./pages/ErrorPage/ErrorPage"
 import { MainPage } from "./pages/MainPage/MainPage"
 import { BookPage } from "./pages/BookPage/BookPage"
 import { ReservePage } from "./pages/ReservePage/ReservePage"
+import { ReturnPage } from "./pages/ReturnPage/ReturnPage"
 
 const router = createBrowserRouter([
   {
@@ -35,8 +36,12 @@ const router = createBrowserRouter([
         element: <BookPage />,
       },
       {
-        path: "books/issue",
+        path: "books/reserve",
         element: <ReservePage />,
+      },
+      {
+        path: "books/return",
+        element: <ReturnPage />,
       },
     ],
   },
