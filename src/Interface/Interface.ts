@@ -13,3 +13,13 @@ export interface Book {
   total_Copies: number
   condition: string
 }
+
+export interface User {
+  id: string
+  fullName: string
+  description: string
+  address: string
+  email: string
+  roles: [string]
+  phoneNumber: string
+}

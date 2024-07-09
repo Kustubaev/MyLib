@@ -16,7 +16,7 @@ export const Layout = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/")
+      // navigate("/")
       // navigate("/auth") !!! Поменять
     }
   }, [])

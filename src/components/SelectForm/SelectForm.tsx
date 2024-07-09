@@ -3,7 +3,7 @@ import React, { FC } from "react"
 import { Control, useController } from "react-hook-form"
 
 interface Option {
-  value: boolean
+  value: any
   name: string
 }
 

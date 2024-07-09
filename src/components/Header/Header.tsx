@@ -27,8 +27,11 @@ export const Header: FC = () => {
     navigate("/auth")
   }
 
+  console.log("cls.container", cls.container)
+
   return (
     <Navbar className={cls.container}>
+      <div className={cls.container}>Тееест</div>
       <NavbarBrand>
         <Button
           variant="ghost"
@@ -63,10 +66,10 @@ export const Header: FC = () => {
         <NavbarItem>
           <Button
             onClick={() => {
-              navigate("/books/66882406473dda933726ecdf")
+              navigate("/books/issue")
             }}
           >
-            <span>О нас</span>
+            <span>Добавить книгу</span>
           </Button>
         </NavbarItem>
       </NavbarContent>

@@ -11,6 +11,7 @@ import { BooksPage } from "./pages/BooksPage/BooksPage"
 import { CurrentBookPage } from "./pages/CurrentBookPage/CurrentBookPage"
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage"
 import { MainPage } from "./pages/MainPage/MainPage"
+import { BookIssue } from "./pages/BookIssue/BookIssue"
 import { BookPage } from "./pages/BookPage/BookPage"
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "books/:id",
         element: <BookPage />,
+      },
+      {
+        path: "books/issue",
+        element: <BookIssue />,
       },
     ],
   },
