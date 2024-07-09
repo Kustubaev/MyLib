@@ -87,12 +87,12 @@ export const ReservePage = () => {
   })
 
   return (
-    <div className="flex">
-      <div>
+    <div className={cls.container}>
+      <div className={cls.wrapper__form}>
         <h1>Зарезервировать книгу</h1>
         <form onSubmit={onSubmit}>
           <div className="flex">
-            <div>
+            <div className={cls.box}>
               <SelectForm
                 className={cls.select}
                 control={control}
@@ -109,7 +109,7 @@ export const ReservePage = () => {
               </div>
             </div>
 
-            <div>
+            <div className={cls.box}>
               <SelectForm
                 className={cls.select}
                 control={control}
@@ -173,7 +173,7 @@ export const ReservePage = () => {
           </ol>
         </form>
       </div>
-      <div>
+      <div className={cls.info}>
         <h3>Итоговая информация:</h3>
         {userValue ? (
           <div>

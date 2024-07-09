@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react"
-import { useGetAllBooksQuery } from "../../app/services/bookApi"
-import { arrayToObject } from "../../utils/arrayToObject"
+import { Book } from "../../Interface/Interface"
+import { BooksMock } from "../../data/Books"
 import {
   sortBookAuthor,
   sortBookGenre,
   sortBookPageCount,
-  sortBooksException,
   sortBooksMove,
 } from "../../utils/sortBook"
 import { Card } from "../Card/Card"
 import { Select } from "../Select/Select"
 import cls from "./Books.module.scss"
-import { Book } from "../../Interface/Interface"
-import { BooksMock } from "../../data/Books"
 
 interface SeceltProps {
   value: string

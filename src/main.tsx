@@ -13,6 +13,7 @@ import { MainPage } from "./pages/MainPage/MainPage"
 import { BookPage } from "./pages/BookPage/BookPage"
 import { ReservePage } from "./pages/ReservePage/ReservePage"
 import { ReturnPage } from "./pages/ReturnPage/ReturnPage"
+import { AddBookPage } from "./pages/AddBookPage/AddBookPage"
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "books/return",
         element: <ReturnPage />,
+      },
+      {
+        path: "books/add",
+        element: <AddBookPage />,
       },
     ],
   },

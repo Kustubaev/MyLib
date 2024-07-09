@@ -1,4 +1,31 @@
-.select {
-  width: 48%;
-  min-width: 200px;
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  width: 28%;
+}
+
+.wrapper__form {
+  width: 70%;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+
+  &__right {
+
+    width: 45%;
+  }
+
+  &__left {
+    width: 45%;
+  }
+}
+
+.box {
+  width: 50%;
 }

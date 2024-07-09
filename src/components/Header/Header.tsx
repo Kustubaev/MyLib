@@ -68,7 +68,7 @@ export const Header: FC = () => {
               navigate("/books/reserve")
             }}
           >
-            <span>Добавить книгу</span>
+            <span>Зарезервировать</span>
           </Button>
         </NavbarItem>
         <NavbarItem>
@@ -77,7 +77,16 @@ export const Header: FC = () => {
               navigate("/books/return")
             }}
           >
-            <span>Зарезервировать</span>
+            <span>Возврат</span>
+          </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button
+            onClick={() => {
+              navigate("/books/add")
+            }}
+          >
+            <span>Добавление</span>
           </Button>
         </NavbarItem>
       </NavbarContent>

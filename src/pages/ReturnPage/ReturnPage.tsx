@@ -16,7 +16,6 @@ interface SelectProps {
 }
 
 export const ReturnPage = () => {
-  const navigate = useNavigate()
   const books: Book[] = [...BooksMock]
   const users: User[] = [...UsersMock]
 
@@ -84,8 +83,8 @@ export const ReturnPage = () => {
   })
 
   return (
-    <div className="flex">
-      <div>
+    <div className={cls.container}>
+      <div className={cls.wrapper__form}>
         <h1>Возврат книги</h1>
         <form onSubmit={onSubmit}>
           <SelectForm
@@ -146,7 +145,7 @@ export const ReturnPage = () => {
           </Button>
         </form>
       </div>
-      <div>
+      <div className={cls.info}>
         <p>Правила резервирования книг:</p>
         <ol>
           <li>
