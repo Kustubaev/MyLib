@@ -25,6 +25,8 @@ export const ReservePage = () => {
 
   const [bookValue, setBookValue] = useState<Book>()
   const [userValue, setUserValue] = useState<User>()
+  const [conditionValue, setConditionValue] = useState<string>()
+  const [commentValue, setCommentValue] = useState<string>()
 
   // Для отрисовки выбранных данных используем bookValue и userValue
 
@@ -57,6 +59,8 @@ export const ReservePage = () => {
     const subscription = watch((value, { name, type }) => {
       setBookValue(books[parseInt(value.bookSelect)])
       setUserValue(users[parseInt(value.userSelect)])
+      setConditionValue(value.condition)
+      setCommentValue(value.comment)
     })
     return () => subscription.unsubscribe()
   }, [watch])
@@ -171,6 +175,26 @@ export const ReservePage = () => {
       </div>
       <div>
         <h3>Итоговая информация:</h3>
+        {userValue ? (
+          <div>
+            <div>Читатель:</div>
+            <div>{userValue?.fullName}</div>
+            <div>{userValue?.address}</div>
+            <div>{userValue?.email}</div>
+            <div>{userValue?.phoneNumber}</div>
+          </div>
+        ) : null}
+        {bookValue ? (
+          <div>
+            <div>Книга:</div>
+            <div>{bookValue?.title}</div>
+            <div>{bookValue?.publishDate}</div>
+          </div>
+        ) : null}
+        {conditionValue ? (
+          <div>Состояние книги при выдаче: {conditionValue}</div>
+        ) : null}
+        {commentValue ? <div>Комментарий: {commentValue}</div> : null}
       </div>
     </div>
   )
