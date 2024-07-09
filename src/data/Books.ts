@@ -4,7 +4,7 @@ export const BooksMock: Book[] = [
   {
     id: 1,
     title: "Новая df",
-    content: "vbnhgj",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusantium deserunt, id natus reprehenderit debitis numquam magni ut assumenda mollitia eos eligendi ab fugit explicabo aperiam doloribus voluptatibus consequatur praesentium?",
     authorId: 1,
     genreId: 2,
     dateCreated: new Date("2022-01-15"),
@@ -19,7 +19,7 @@ export const BooksMock: Book[] = [
   {
     id: 2,
     title: "Новая ghj",
-    content: "njdfjkdf gh",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusantium deserunt, id natus reprehenderit debitis numquam magni ut assumenda mollitia eos eligendi ab fugit explicabo aperiam doloribus voluptatibus consequatur praesentium?",
     authorId: 1,
     genreId: 1,
     dateCreated: new Date("2022-01-15"),
@@ -34,7 +34,7 @@ export const BooksMock: Book[] = [
   {
     id: 3,
     title: "Новая xcv",
-    content: "hjkjhl",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusantium deserunt, id natus reprehenderit debitis numquam magni ut assumenda mollitia eos eligendi ab fugit explicabo aperiam doloribus voluptatibus consequatur praesentium?",
     authorId: 2,
     genreId: 3,
     dateCreated: new Date("2022-01-15"),
@@ -49,7 +49,7 @@ export const BooksMock: Book[] = [
   {
     id: 4,
     title: "Новая rty",
-    content: "sdfsdf",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusantium deserunt, id natus reprehenderit debitis numquam magni ut assumenda mollitia eos eligendi ab fugit explicabo aperiam doloribus voluptatibus consequatur praesentium?",
     authorId: 3,
     genreId: 2,
     dateCreated: new Date("2022-01-15"),
@@ -64,7 +64,7 @@ export const BooksMock: Book[] = [
   {
     id: 5,
     title: "Новая sdf",
-    content: "fghfdfg",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusantium deserunt, id natus reprehenderit debitis numquam magni ut assumenda mollitia eos eligendi ab fugit explicabo aperiam doloribus voluptatibus consequatur praesentium?",
     authorId: 3,
     genreId: 3,
     dateCreated: new Date("2022-01-15"),
@@ -79,7 +79,7 @@ export const BooksMock: Book[] = [
   {
     id: 6,
     title: "Новая jgh",
-    content: "dvbnvbn gfg f ghfg",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusantium deserunt, id natus reprehenderit debitis numquam magni ut assumenda mollitia eos eligendi ab fugit explicabo aperiam doloribus voluptatibus consequatur praesentium?",
     authorId: 2,
     genreId: 1,
     dateCreated: new Date("2022-01-15"),

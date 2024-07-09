@@ -1,0 +1,62 @@
+.Card{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+
+        &__right{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                
+                padding: 30px 40px;
+
+                &__header{
+                        width: 100%;
+
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        &__title {
+                                min-width: 0.1px;
+
+                                font-size: 30px;
+                        }
+
+                        &__button {
+                                padding: 10px 15px;
+                                background-color: #ffffff;
+                                border-radius: 10px;
+
+                                color: black;
+                                font-size: 20px;
+                        }
+                }
+
+                &__info {
+                        display: flex;
+                        &__block {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-between;
+
+                                margin-right: 20px;
+
+                                &__title{
+                                        margin-right: 10px;
+                                }
+
+                                &__text {
+
+                                }
+                        }
+                }
+        }
+
+        &__left{
+                max-width: 30%;
+                
+        }
+}
