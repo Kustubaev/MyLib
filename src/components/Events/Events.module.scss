@@ -1,0 +1,23 @@
+.Event {
+    display: flex;
+    flex-direction: row;
+    margin: 50px 15px;
+
+    background: linear-gradient(to right, #A3E165, #68A2CC);
+
+    border-width: 3px;
+    border-color: #68A2CC;
+    border-radius: 10px;
+
+    &__img{
+        width: 50%;
+    }
+
+    &__text{
+        padding: 30px 50px;
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        width: 50%;
+    }
+}

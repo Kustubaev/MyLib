@@ -1,0 +1,22 @@
+.Slider {
+    margin: 50px 30px;
+    min-width: 200px;
+
+    &__element {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__img {
+            max-height: 500px;
+            border-radius: 3%;
+            border-color: transparent;
+        }
+
+        &__text {
+            text-align: center;
+            font-size: 20px;
+        }
+    }
+}
