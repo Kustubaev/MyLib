@@ -1,4 +1,45 @@
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.BookDetailBlock {
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: row;
+
+  &__left{
+    width: 90%;
+    margin-right: 30px;
+    &__img{
+    }
+  }
+
+  &__right{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0;
+    &__title {
+
+      div {
+        margin: 0;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: row;
+      margin: 20px 0 10px;
+      &__genre{
+        margin-right: 30px;
+      }
+
+      &__author {
+
+      }
+    }
+
+    &__about{
+
+      &__title{
+        font-size: 30px;
+        margin-bottom: 5px;
+      }
+    } 
+  }
 }
