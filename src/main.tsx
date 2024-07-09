@@ -8,11 +8,10 @@ import { AuthGuard } from "./features/user/authGuard"
 import "./index.css"
 import { AuthPage } from "./pages/AuthPage/AuthPage"
 import { BooksPage } from "./pages/BooksPage/BooksPage"
-import { CurrentBookPage } from "./pages/CurrentBookPage/CurrentBookPage"
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage"
 import { MainPage } from "./pages/MainPage/MainPage"
-import { BookIssue } from "./pages/BookIssue/BookIssue"
 import { BookPage } from "./pages/BookPage/BookPage"
+import { ReservePage } from "./pages/ReservePage/ReservePage"
 
 const router = createBrowserRouter([
   {
@@ -37,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "books/issue",
-        element: <BookIssue />,
+        element: <ReservePage />,
       },
     ],
   },

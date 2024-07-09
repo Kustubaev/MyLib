@@ -15,7 +15,7 @@ interface SelectProps {
   name: string
 }
 
-export const BookIssue = () => {
+export const ReservePage = () => {
   const navigate = useNavigate()
   const books: Book[] = [...BooksMock]
   const users: User[] = [...UsersMock]
