@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useGetAllBooksQuery } from "../../app/services/bookApi"
-import { Book } from "../../app/types"
 import { arrayToObject } from "../../utils/arrayToObject"
 import { sortBooksException, sortBooksMove } from "../../utils/sortBook"
 import { Card } from "../Card/Card"
 import { Select } from "../Select/Select"
 import cls from "./Books.module.scss"
+import { Book } from "../../Interface/Interface"
+import { BooksMock } from "../../data/Books"
 
 interface SeceltProps {
   value: string
@@ -13,7 +14,11 @@ interface SeceltProps {
 }
 
 export const Books = () => {
-  const { data } = useGetAllBooksQuery()
+  const data = BooksMock
+
+  console.log("data", data)
+
+  // const { data } = useGetAllBooksQuery()
   const [uniqueAuthor, setUniqueAuthor] = useState<SeceltProps[]>([])
 
   const [books, setBooks] = useState<Book[]>([])
@@ -28,23 +33,22 @@ export const Books = () => {
     if (data) {
       setBooks(data)
 
-      setUniqueAuthor(
-        arrayToObject([...new Set([...data].map((post) => post.author.email))]),
-      )
+      // setUniqueAuthor(
+      //   arrayToObject([...new Set([...data].map((post) => post.author.email))]),
+      // )
     }
-    console.log(data)
   }, [data])
 
-  useEffect(() => {
-    if (data) {
-      let newArray = [...data]
-      newArray = sortBooksMove(newArray, sortedKey.category)
-      newArray = sortBooksException(newArray, sortedKey.author)
-      newArray = sortBooksException(newArray, sortedKey.genre)
-      newArray = sortBooksException(newArray, sortedKey.count)
-      setBooks(newArray)
-    }
-  }, [sortedKey])
+  // useEffect(() => {
+  //   if (data) {
+  //     let newArray = [...data]
+  //     newArray = sortBooksMove(newArray, sortedKey.category)
+  //     newArray = sortBooksException(newArray, sortedKey.author)
+  //     newArray = sortBooksException(newArray, sortedKey.genre)
+  //     newArray = sortBooksException(newArray, sortedKey.count)
+  //     setBooks(newArray)
+  //   }
+  // }, [sortedKey])
 
   return (
     <div className={cls.container}>
@@ -61,17 +65,8 @@ export const Books = () => {
           ]}
         />
         {books && books.length > 0
-          ? books.map(({ content, author, id, authorId, createdAt }) => (
-              <Card
-                key={id}
-                avatarUrl={author.avatarUrl ?? ""}
-                content={content}
-                name={author.name ?? ""}
-                authorId={authorId}
-                id={id}
-                createdAt={createdAt}
-                cardFor="post"
-              />
+          ? books.map((item, index) => (
+              <Card book={item} key={index} cardFor="post" />
             ))
           : null}
       </div>
