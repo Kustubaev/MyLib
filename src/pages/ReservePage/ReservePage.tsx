@@ -8,7 +8,7 @@ import { SelectForm } from "../../components/SelectForm/SelectForm"
 import { BooksMock } from "../../data/Books"
 import { UsersMock } from "../../data/Users"
 import { useNavigate } from "react-router-dom"
-import cls from "./BookIssue.module.scss"
+import cls from "./ReservePage.module.scss"
 
 interface SelectProps {
   value: number

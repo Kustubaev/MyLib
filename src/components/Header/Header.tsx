@@ -31,7 +31,6 @@ export const Header: FC = () => {
 
   return (
     <Navbar className={cls.container}>
-      <div className={cls.container}>Тееест</div>
       <NavbarBrand>
         <Button
           variant="ghost"
