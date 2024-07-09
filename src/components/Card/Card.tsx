@@ -13,7 +13,9 @@ export const Card = ({ book }: CardProps) => {
     <NextUiCard className="mb-5">
       <div>{book.id}</div>
       <div>{book.title}</div>
+      <div>{book.content}</div>
       <div>{book.authorId}</div>
+      <div>{book.publishDate}</div>
       <div>"-------------"</div>
       <button
         type="button"

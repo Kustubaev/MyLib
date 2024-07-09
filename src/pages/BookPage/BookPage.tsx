@@ -1,6 +1,5 @@
-import { useLocation, useParams } from "react-router-dom"
-import cls from "./BookPage.module.scss"
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import { Book } from "../../Interface/Interface"
 import { BooksMock } from "../../data/Books"
 
@@ -9,7 +8,9 @@ export const BookPage = () => {
   const [book, setBook] = useState<Book>()
 
   useEffect(() => {
-    setBook(BooksMock[params.id])
+    if (params.id) {
+      setBook(BooksMock[params.id])
+    }
   }, [params])
 
   return (

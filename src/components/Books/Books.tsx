@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react"
 import { useGetAllBooksQuery } from "../../app/services/bookApi"
 import { arrayToObject } from "../../utils/arrayToObject"
-import { sortBooksException, sortBooksMove } from "../../utils/sortBook"
+import {
+  sortBookAuthor,
+  sortBookGenre,
+  sortBookPageCount,
+  sortBooksException,
+  sortBooksMove,
+} from "../../utils/sortBook"
 import { Card } from "../Card/Card"
 import { Select } from "../Select/Select"
 import cls from "./Books.module.scss"
@@ -16,10 +22,7 @@ interface SeceltProps {
 export const Books = () => {
   const data = BooksMock
 
-  console.log("data", data)
-
   // const { data } = useGetAllBooksQuery()
-  const [uniqueAuthor, setUniqueAuthor] = useState<SeceltProps[]>([])
 
   const [books, setBooks] = useState<Book[]>([])
   const [sortedKey, setSortedKey] = useState({
@@ -32,23 +35,21 @@ export const Books = () => {
   useEffect(() => {
     if (data) {
       setBooks(data)
-
-      // setUniqueAuthor(
-      //   arrayToObject([...new Set([...data].map((post) => post.author.email))]),
-      // )
     }
   }, [data])
 
-  // useEffect(() => {
-  //   if (data) {
-  //     let newArray = [...data]
-  //     newArray = sortBooksMove(newArray, sortedKey.category)
-  //     newArray = sortBooksException(newArray, sortedKey.author)
-  //     newArray = sortBooksException(newArray, sortedKey.genre)
-  //     newArray = sortBooksException(newArray, sortedKey.count)
-  //     setBooks(newArray)
-  //   }
-  // }, [sortedKey])
+  useEffect(() => {
+    if (data) {
+      console.log(sortedKey)
+
+      let newArray = [...data]
+      newArray = sortBooksMove(newArray, sortedKey.category)
+      newArray = sortBookAuthor(newArray, sortedKey.author)
+      newArray = sortBookGenre(newArray, sortedKey.genre)
+      newArray = sortBookPageCount(newArray, sortedKey.count)
+      setBooks(newArray)
+    }
+  }, [sortedKey])
 
   return (
     <div className={cls.container}>
@@ -59,15 +60,13 @@ export const Books = () => {
           label="Сортировать по"
           className={cls.select}
           options={[
+            { value: "title", name: "По названию" },
             { value: "content", name: "По содержанию" },
-            { value: "author.name", name: "По автору" },
-            { value: "createdAt", name: "Сначала старые" },
+            { value: "publishDate", name: "Сначала старые" },
           ]}
         />
         {books && books.length > 0
-          ? books.map((item, index) => (
-              <Card book={item} key={index} cardFor="post" />
-            ))
+          ? books.map((item, index) => <Card book={item} key={index} />)
           : null}
       </div>
       <div className={cls.content__right}>
@@ -76,21 +75,33 @@ export const Books = () => {
           onChange={(value) => setSortedKey({ ...sortedKey, author: value })}
           label="Автор"
           className={cls.select}
-          options={uniqueAuthor}
+          options={[
+            { value: "1", name: "Фёдор Михайлович Достоевский" },
+            { value: "2", name: "Александр Сергеевич Пушкин" },
+            { value: "3", name: "Лев Николаевич Толстой" },
+          ]}
         />
         <Select
           value={sortedKey.genre}
           onChange={(value) => setSortedKey({ ...sortedKey, genre: value })}
           label="Жанр"
           className={cls.select}
-          options={uniqueAuthor}
+          options={[
+            { value: "1", name: "Рассказы" },
+            { value: "2", name: "Новелла" },
+            { value: "3", name: "Роман" },
+          ]}
         />
         <Select
           value={sortedKey.count}
           onChange={(value) => setSortedKey({ ...sortedKey, count: value })}
           label="Количество страниц"
           className={cls.select}
-          options={uniqueAuthor}
+          options={[
+            { value: "1", name: "<100" },
+            { value: "2", name: "100-250" },
+            { value: "3", name: ">250" },
+          ]}
         />
       </div>
     </div>

@@ -1,6 +1,7 @@
 export interface Book {
   id: number
   title: string
+  content: string
   authorId: number
   genreId: number
   dateCreated: Date

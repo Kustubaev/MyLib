@@ -1,3 +1,5 @@
+import { Book } from "../Interface/Interface"
+
 export interface User {
   id: string
   email: string
@@ -7,13 +9,4 @@ export interface User {
   createdAt: Date
   updatedAt: Date
   book: Book[]
-}
-
-export interface Book {
-  id: string
-  content: string
-  author: User
-  authorId: string
-  createdAt: Date
-  updatedAt: Date
 }
