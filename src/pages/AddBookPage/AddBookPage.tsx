@@ -9,6 +9,9 @@ import { BooksMock } from "../../data/Books"
 import { UsersMock } from "../../data/Users"
 import { useNavigate } from "react-router-dom"
 import cls from "./AddBookPage.module.scss"
+import { Modal } from "../../components/Modal/Modal"
+import { useDisclosure } from "@nextui-org/react"
+import { AddAuthor } from "../../components/AddAuthor/AddAuthor"
 
 interface SelectProps {
   value: number
@@ -28,6 +31,8 @@ export const AddBookPage = () => {
     { value: "3", name: "Лев Николаевич Толстой" },
   ]
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   const {
     handleSubmit,
     control,
@@ -38,23 +43,6 @@ export const AddBookPage = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data)
-
-    // const newData = {
-    //   ...data,
-    //   authorId: parseInt(data.authorId, 10),
-    //   pageCount: parseInt(data.pageCount, 10),
-    //   isPublic: Boolean(data.isPublic),
-    //   publishDate: data.publishDate,
-    //   publishHouse: data.publishHouse,
-    //   title: data.title,
-    // }
-    // try {
-    //   await create..{ newData, genreId }).unwrap()
-    //   setValue("post", "")
-    //   await triggerGetAllBooks().unwrap()
-    // } catch (error) {
-    //   console.log("err", error)
-    // }
   })
 
   return (
@@ -118,6 +106,7 @@ export const AddBookPage = () => {
               />
             </div>
           </div>
+          <Button onClick={() => onOpen()}>Добавить автора</Button>
           <Button className="flex-end" type="submit" onClick={onSubmit}>
             Добавить книгу
           </Button>
@@ -140,6 +129,9 @@ export const AddBookPage = () => {
           </li>
         </ol>
       </div>
+      <Modal headerTitle="Тут название окна" isOpen={isOpen} onClose={onClose}>
+        <AddAuthor onClose={onClose} />
+      </Modal>
     </div>
   )
 }

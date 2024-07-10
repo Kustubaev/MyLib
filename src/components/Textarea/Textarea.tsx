@@ -1,8 +1,8 @@
-import { Input as NextInput } from "@nextui-org/react"
+import { Textarea as NTextarea } from "@nextui-org/react"
 import { FC } from "react"
 import { Control, useController } from "react-hook-form"
 
-type InputProps = {
+type TextareaProps = {
   loading?: boolean
   name: string
   label: string
@@ -13,9 +13,11 @@ type InputProps = {
   required?: string
   endContent?: JSX.Element
   variant?: "flat" | "bordered" | "faded" | "underlined"
+  minRows?: number
+  maxRows?: number
 }
 
-export const Input: FC<InputProps> = ({
+export const Textarea: FC<TextareaProps> = ({
   loading,
   name,
   label,
@@ -26,6 +28,8 @@ export const Input: FC<InputProps> = ({
   required = "",
   endContent,
   variant = "bordered",
+  minRows = 3,
+  maxRows = 6,
 }) => {
   const {
     field,
@@ -38,7 +42,7 @@ export const Input: FC<InputProps> = ({
   })
 
   return (
-    <NextInput
+    <NTextarea
       isDisabled={loading}
       id={name}
       label={label}
@@ -52,6 +56,8 @@ export const Input: FC<InputProps> = ({
       onBlur={field?.onBlur}
       errorMessage={`${errors[name]?.message ?? ""}`}
       endContent={endContent}
+      minRows={minRows}
+      maxRows={maxRows}
     />
   )
 }

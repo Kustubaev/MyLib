@@ -36,8 +36,6 @@ export const ReservePage = () => {
 
   // Для отрисовки выбранных данных используем bookValue и userValue
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
   const {
     handleSubmit,
     control,
@@ -74,7 +72,6 @@ export const ReservePage = () => {
 
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
-      value.bookSelect && onClose()
       setBookValue(books[parseInt(value.bookSelect)])
       setUserValue(users[parseInt(value.userSelect)])
       setConditionValue(value.condition)
@@ -197,17 +194,6 @@ export const ReservePage = () => {
         ) : null}
         {commentValue ? <div>Комментарий: {commentValue}</div> : null}
       </div>
-      <Button onClick={() => onOpen()}>Всплывающее окно</Button>
-      <Modal headerTitle="Тут название окна" isOpen={isOpen} onClose={onClose}>
-        <InputSelect
-          control={control}
-          label="Тестовое поле:"
-          name="bookSelect"
-          type="text"
-          required="Обязательное поле"
-          options={bookOptions}
-        />
-      </Modal>
     </div>
   )
 }

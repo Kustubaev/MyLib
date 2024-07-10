@@ -1,7 +1,8 @@
-import { Button as NextButton } from "@nextui-org/react"
+import { Button as NextButton, Spinner } from "@nextui-org/react"
 import React, { FC } from "react"
 
 interface ButtonProps {
+  loading?: boolean
   children: React.ReactNode
   icon?: JSX.Element
   className?: string
@@ -30,6 +31,7 @@ interface ButtonProps {
 }
 
 export const Button: FC<ButtonProps> = ({
+  loading,
   children,
   icon,
   className,
@@ -44,6 +46,7 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <NextButton
+      isDisabled={loading}
       startContent={icon}
       size="lg"
       color={color}
@@ -56,7 +59,7 @@ export const Button: FC<ButtonProps> = ({
       onPress={onPress}
       {...otherProps}
     >
-      {children}
+      {loading ? <Spinner /> : children}
     </NextButton>
   )
 }
