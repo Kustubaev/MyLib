@@ -1,6 +1,6 @@
 import { Listbox, ListboxItem, Input as NextInput } from "@nextui-org/react"
 import { FC, useEffect, useMemo, useState } from "react"
-import { Control, useController } from "react-hook-form"
+import { Control, useController, useWatch } from "react-hook-form"
 
 interface Option {
   value: any
@@ -34,10 +34,16 @@ export const InputSelect: FC<InputProps> = (props) => {
 
   const [valueInput, setValueInput] = useState("")
   const [optionsSelect, setOptionsSelect] = useState(options)
+  const [onInput, setOnInput] = useState(false)
 
-  const findMatchingString = (item: Option[], element: string) => {
+  const findMatchingString = ([...item]: Option[], element: string) => {
     if (!element) return item
-    return item && [...item].filter((item) => item.name.includes(element))
+    return (
+      item &&
+      item.filter((item) =>
+        item?.name?.toLowerCase()?.includes(element?.toLowerCase()),
+      )
+    )
   }
 
   const [selectedKeys, setSelectedKeys] = useState(new Set(["text"]))
@@ -63,9 +69,26 @@ export const InputSelect: FC<InputProps> = (props) => {
     rules: { required },
   })
 
+  const results = useWatch({ control, name: name })
+
+  const onChangeSelect = (e: any) => {
+    setSelectedKeys(e)
+    setOptionsSelect([])
+  }
+
+  const onFocusInput = (e: any) => {
+    setValueInput("")
+    setOnInput(true)
+  }
+
+  useEffect(() => {
+    options && setValueInput(options?.[results]?.name)
+  }, [results])
+
   return (
     <>
       <NextInput
+        value={valueInput}
         id={name}
         label={label}
         type={type}
@@ -73,9 +96,11 @@ export const InputSelect: FC<InputProps> = (props) => {
         placeholder={placeholder}
         errorMessage={`${errors[name]?.message ?? ""}`}
         onChange={(e) => setValueInput(e.target.value)}
+        onFocus={onFocusInput}
+        onBlur={() => setOnInput(false)}
       />
 
-      {valueInput ? (
+      {valueInput && onInput ? (
         optionsSelect?.length ? (
           <Listbox
             aria-label="Multiple selection example"
@@ -83,8 +108,7 @@ export const InputSelect: FC<InputProps> = (props) => {
             disallowEmptySelection
             selectionMode="single"
             selectedKeys={selectedKeys}
-            onSelectionChange={setSelectedKeys}
-            value={field?.value}
+            onSelectionChange={onChangeSelect}
             name={field?.name}
           >
             {optionsSelect?.map((item) => (

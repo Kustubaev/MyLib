@@ -12,6 +12,7 @@ import cls from "./ReservePage.module.scss"
 import { useDisclosure } from "@nextui-org/react"
 import { Modal } from "../../components/Modal/Modal"
 import { InputSelect } from "../../components/InputSelect/InputSelect"
+import { Authors, AuthorsMock } from "../../data/Authors"
 
 interface SelectProps {
   value: number
@@ -22,9 +23,11 @@ export const ReservePage = () => {
   const navigate = useNavigate()
   const books: Book[] = [...BooksMock]
   const users: User[] = [...UsersMock]
+  const authors: Authors[] = [...AuthorsMock]
 
   const [bookOptions, setBookOptions] = useState<SelectProps[]>([])
   const [userOptions, setUserOptions] = useState<SelectProps[]>([])
+  const [authorsOptions, setAuthorsOptionss] = useState<SelectProps[]>([])
 
   const [bookValue, setBookValue] = useState<Book>()
   const [userValue, setUserValue] = useState<User>()
@@ -34,7 +37,6 @@ export const ReservePage = () => {
   // Для отрисовки выбранных данных используем bookValue и userValue
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const data = {}
 
   const {
     handleSubmit,
@@ -45,11 +47,20 @@ export const ReservePage = () => {
   } = useForm()
 
   useEffect(() => {
+    authors &&
+      setAuthorsOptionss(
+        [...authors].map((item, index) => ({
+          value: index,
+          name: `${item.name}`,
+        })),
+      )
     books &&
       setBookOptions(
         [...books].map((item, index) => ({
           value: index,
-          name: `${item.title} - ${item.publishDate}`,
+          name: `${item.title} - ${authors[item.authorId].name} - ${
+            item.publishDate
+          }`,
         })),
       )
     users &&
@@ -84,15 +95,7 @@ export const ReservePage = () => {
           <div className="flex">
             <div className={cls.box}>
               <InputSelect
-                control={control}
-                label="Тестовое поле:"
-                name="bookSelect"
                 type="text"
-                required="Обязательное поле"
-                options={bookOptions}
-              />
-              <SelectForm
-                className={cls.select}
                 control={control}
                 label="Книга:"
                 name="bookSelect"
@@ -100,7 +103,7 @@ export const ReservePage = () => {
                 options={bookOptions}
               />
               <div>
-                <div>{bookValue?.id}</div>
+                <div>{authorsOptions[bookValue?.authorId]?.name}</div>
                 <div>{bookValue?.title}</div>
                 <div>{bookValue?.content}</div>
                 <div>{bookValue?.publishDate}</div>
@@ -108,8 +111,8 @@ export const ReservePage = () => {
             </div>
 
             <div className={cls.box}>
-              <SelectForm
-                className={cls.select}
+              <InputSelect
+                type="text"
                 control={control}
                 label="Читатель:"
                 name="userSelect"
