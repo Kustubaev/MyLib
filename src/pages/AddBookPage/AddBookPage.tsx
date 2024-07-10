@@ -12,6 +12,7 @@ import cls from "./AddBookPage.module.scss"
 import { Modal } from "../../components/Modal/Modal"
 import { useDisclosure } from "@nextui-org/react"
 import { AddAuthor } from "../../components/AddAuthor/AddAuthor"
+import { AddGenre } from "../../components/AddGenre/AddGenre"
 
 interface SelectProps {
   value: number
@@ -31,7 +32,9 @@ export const AddBookPage = () => {
     { value: "3", name: "Лев Николаевич Толстой" },
   ]
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const authorDisclosure = useDisclosure()
+  const genreDisclosure = useDisclosure()
+  const [loading, setLoading] = useState(false)
 
   const {
     handleSubmit,
@@ -39,10 +42,24 @@ export const AddBookPage = () => {
     formState: { errors },
     setValue,
     watch,
+    reset,
   } = useForm()
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
+    setLoading(true)
+    setTimeout(() => {
+      console.log(data)
+      reset({
+        title: "",
+        total_Copies: "",
+        authorId: "",
+        condition: "",
+        content: "",
+        genreId: "",
+        date: "",
+      })
+      setLoading(false)
+    }, 3000)
   })
 
   return (
@@ -53,6 +70,7 @@ export const AddBookPage = () => {
           <div className={cls.form}>
             <div className={cls.form__left}>
               <Input
+                loading={loading}
                 control={control}
                 label="Название книги:"
                 name="title"
@@ -60,6 +78,7 @@ export const AddBookPage = () => {
                 required="Обязательное поле"
               />
               <Input
+                loading={loading}
                 control={control}
                 label="Количество копий:"
                 name="total_Copies"
@@ -67,6 +86,7 @@ export const AddBookPage = () => {
                 required="Обязательное поле"
               />
               <SelectForm
+                loading={loading}
                 className={cls.select}
                 control={control}
                 label="Автор:"
@@ -75,6 +95,7 @@ export const AddBookPage = () => {
                 options={author}
               />
               <Input
+                loading={loading}
                 control={control}
                 label="Серийный номер:"
                 name="condition"
@@ -84,12 +105,14 @@ export const AddBookPage = () => {
             </div>
             <div className={cls.form__right}>
               <Input
+                loading={loading}
                 control={control}
                 label="Описание книги:"
                 name="content"
                 type="text"
               />
               <SelectForm
+                loading={loading}
                 className={cls.select}
                 control={control}
                 label="Жанр:"
@@ -98,6 +121,7 @@ export const AddBookPage = () => {
                 options={genre}
               />
               <Input
+                loading={loading}
                 control={control}
                 label="Дата публикации:"
                 name="date"
@@ -106,8 +130,18 @@ export const AddBookPage = () => {
               />
             </div>
           </div>
-          <Button onClick={() => onOpen()}>Добавить автора</Button>
-          <Button className="flex-end" type="submit" onClick={onSubmit}>
+          <Button onClick={() => authorDisclosure.onOpen()}>
+            Добавить автора
+          </Button>
+          <Button onClick={() => genreDisclosure.onOpen()}>
+            Добавить жанр
+          </Button>
+          <Button
+            loading={loading}
+            className="flex-end"
+            type="submit"
+            onClick={onSubmit}
+          >
             Добавить книгу
           </Button>
         </form>
@@ -131,10 +165,17 @@ export const AddBookPage = () => {
       </div>
       <Modal
         headerTitle="Внести автора в базу"
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={authorDisclosure.isOpen}
+        onClose={authorDisclosure.onClose}
       >
-        <AddAuthor onClose={onClose} />
+        <AddAuthor onClose={authorDisclosure.onClose} />
+      </Modal>
+      <Modal
+        headerTitle="Внести жанр в базу"
+        isOpen={genreDisclosure.isOpen}
+        onClose={genreDisclosure.onClose}
+      >
+        <AddGenre onClose={genreDisclosure.onClose} />
       </Modal>
     </div>
   )

@@ -8,6 +8,7 @@ interface Option {
 }
 
 interface InputProps {
+  loading?: boolean
   control?: Control<any>
   label: string
   name: string
@@ -21,6 +22,7 @@ interface InputProps {
 
 export const InputSelect: FC<InputProps> = (props) => {
   const {
+    loading,
     control,
     label,
     name,
@@ -88,6 +90,7 @@ export const InputSelect: FC<InputProps> = (props) => {
   return (
     <>
       <NextInput
+        isDisabled={loading}
         value={valueInput}
         id={name}
         label={label}

@@ -9,7 +9,7 @@ interface AddAuthorProps {
   onClose: () => void
 }
 
-export const AddAuthor: FC<AddAuthorProps> = (props) => {
+export const AddGenre: FC<AddAuthorProps> = (props) => {
   const { onClose } = props
 
   const [loading, setLoading] = useState(false)
@@ -42,34 +42,17 @@ export const AddAuthor: FC<AddAuthorProps> = (props) => {
             <Input
               loading={loading}
               control={control}
-              label="Имя:"
-              name="firstname"
+              label="Название:"
+              name="title"
               type="string"
-              required="Обязательное поле"
-            />
-            <Input
-              loading={loading}
-              control={control}
-              label="Фамилия:"
-              name="lastname"
-              type="string"
-              required="Обязательное поле"
-            />
-            <Input
-              loading={loading}
-              control={control}
-              label="Дата рождения:"
-              name="birthday"
-              type="date"
               required="Обязательное поле"
             />
             <Textarea
               loading={loading}
               control={control}
-              label="Биография:"
-              name="bio"
+              label="Описание:"
+              name="description"
               type="string"
-              required="Обязательное поле"
             />
           </div>
           <Button
@@ -78,7 +61,7 @@ export const AddAuthor: FC<AddAuthorProps> = (props) => {
             type="submit"
             onClick={onSubmit}
           >
-            Добавить автора в базу
+            Добавить жанр в базу
           </Button>
         </form>
       )}

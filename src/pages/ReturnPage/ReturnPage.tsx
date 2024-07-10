@@ -33,10 +33,11 @@ export const ReturnPage = () => {
     control,
     formState: { errors },
     setValue,
+    reset,
     watch,
   } = useForm()
 
-  console.log(control)
+  console.log("control", control)
 
   useEffect(() => {
     books &&
@@ -67,6 +68,12 @@ export const ReturnPage = () => {
     setLoading(true)
     setTimeout(() => {
       console.log(data)
+      reset({
+        userSelect: {},
+        bookSelect: {},
+        condition: "",
+        comment: "",
+      })
       setLoading(false)
     }, 3000)
   })

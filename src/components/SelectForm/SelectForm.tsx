@@ -94,12 +94,12 @@ export const SelectForm: FC<SelectProps> = (props) => {
       className={className}
       {...otherProps}
     >
-      (
-      {options?.map((option) => (
-        <NSelectItem key={option.value} value={option.value}>
-          {option.name}
-        </NSelectItem>
-      ))}
+      {!loading &&
+        options?.map((option) => (
+          <NSelectItem key={option.value} value={option.value}>
+            {option.name}
+          </NSelectItem>
+        ))}
       )
     </NSelect>
   )

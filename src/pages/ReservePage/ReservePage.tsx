@@ -36,7 +36,7 @@ export const ReservePage = () => {
   const [conditionValue, setConditionValue] = useState<string>()
   const [commentValue, setCommentValue] = useState<string>()
 
-  // Для отрисовки выбранных данных используем bookValue и userValue
+  const [loading, setLoading] = useState(false)
 
   const {
     handleSubmit,
@@ -44,6 +44,7 @@ export const ReservePage = () => {
     formState: { errors },
     setValue,
     watch,
+    reset,
   } = useForm()
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -85,7 +86,17 @@ export const ReservePage = () => {
   }, [watch])
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
+    setLoading(true)
+    setTimeout(() => {
+      console.log(data)
+      reset({
+        bookSelect: "",
+        userSelect: "",
+        condition: "",
+        comment: "",
+      })
+      setLoading(false)
+    }, 3000)
   })
 
   return (
@@ -101,6 +112,7 @@ export const ReservePage = () => {
                 }
               >
                 <InputSelect
+                  loading={loading}
                   type="text"
                   control={control}
                   label="Книга:"
@@ -130,6 +142,7 @@ export const ReservePage = () => {
                 }
               >
                 <InputSelect
+                  loading={loading}
                   type="text"
                   control={control}
                   label="Читатель:"
@@ -156,6 +169,7 @@ export const ReservePage = () => {
           <div className={cls.ReserveBook__right__form__inputBlock}>
             <div className={cls.ReserveBook__right__form__inputBlock__input}>
               <Input
+                loading={loading}
                 control={control}
                 label="Состояние книги при выдаче:"
                 name="condition"
@@ -165,6 +179,7 @@ export const ReservePage = () => {
             </div>
             <div className={cls.ReserveBook__right__form__inputBlock__input}>
               <Input
+                loading={loading}
                 control={control}
                 label="Комментарий к выдаче:"
                 name="comment"
@@ -177,7 +192,12 @@ export const ReservePage = () => {
             <Button className="flex-end" type="button" onClick={onOpen}>
               Добавить читателя
             </Button>
-            <Button className="flex-end" type="submit" onClick={onSubmit}>
+            <Button
+              loading={loading}
+              className="flex-end"
+              type="submit"
+              onClick={onSubmit}
+            >
               Добавить Книгу
             </Button>
           </div>
