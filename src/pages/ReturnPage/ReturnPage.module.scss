@@ -1,31 +1,47 @@
-.container {
-  width: 100%;
+.RerurnPage{
   display: flex;
-  justify-content: space-between;
-}
+  flex-direction: row;
 
-.info {
-  width: 28%;
-}
+  &__left{
+    width: 70%;
+    padding: 0px 30px;
+    &__title{
+      margin-bottom: 20px;
 
-.wrapper__form {
-  width: 70%;
-}
+    }
 
-.form {
-  display: flex;
-  justify-content: space-between;
+    &__form {
+      
+      &__block{
+        margin-bottom: 20px;
 
-  &__right {
+        &__info{
+          padding: 5px 15px 10px;
+        }
+      }
 
-    width: 45%;
+      &__btn{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+      }
+    }
+
+    
   }
 
-  &__left {
-    width: 45%;
-  }
-}
+  &__right{
+    width: 30%;
 
-.box {
-  width: 50%;
+    &__title{
+      margin: 40px 0 20px;
+      font-size: 20px;
+    }
+    &__rules{
+      padding: 0 0;
+      li{
+        margin-bottom: 20px;
+      }
+    }
+  }
 }

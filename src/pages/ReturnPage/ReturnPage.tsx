@@ -9,6 +9,7 @@ import { BooksMock } from "../../data/Books"
 import { UsersMock } from "../../data/Users"
 import { useNavigate } from "react-router-dom"
 import cls from "./ReturnPage.module.scss"
+import { PageTitle } from "../../components/PageTitle/PageTitle"
 
 interface SelectProps {
   value: number
@@ -79,80 +80,92 @@ export const ReturnPage = () => {
   })
 
   return (
-    <div className={cls.container}>
-      <div className={cls.wrapper__form}>
-        <h1>Возврат книги</h1>
-        <form onSubmit={onSubmit}>
-          <SelectForm
-            loading={loading}
-            className={cls.select}
-            control={control}
-            label="Читатель:"
-            name="userSelect"
-            required="Обязательное поле"
-            options={userOptions}
-          />
-          <div>
-            <div>{userValue?.id}</div>
-            <div>{userValue?.fullName}</div>
-            <div>{userValue?.description}</div>
-            <div>{userValue?.address}</div>
-            <div>{userValue?.email}</div>
-            <div>{userValue?.phoneNumber}</div>
-          </div>
-
-          <SelectForm
-            loading={loading}
-            className={cls.select}
-            control={control}
-            label="Книга:"
-            name="bookSelect"
-            required="Обязательное поле"
-            options={bookOptions}
-          />
-          <div>
-            <div>{bookValue?.id}</div>
-            <div>{bookValue?.title}</div>
-            <div>{bookValue?.content}</div>
-            <div>{bookValue?.publishDate}</div>
-          </div>
-
-          {bookValue ? (
-            <div>
-              <div>Состояние книги при выдаче:</div>
-              <p>{commentValueOld}</p>
+    <div className={cls.RerurnPage}>
+      <div className={cls.RerurnPage__left}>
+        <div className={cls.RerurnPage__left__title}>
+          <PageTitle title={'Возврат книги'} />
+        </div>
+        <form className={cls.RerurnPage__left__form} onSubmit={onSubmit}>
+          <div className={cls.RerurnPage__left__form__block}>
+            <SelectForm
+              loading={loading}
+              className={cls.select}
+              control={control}
+              label="Читатель:"
+              name="userSelect"
+              required="Обязательное поле"
+              options={userOptions}
+            />
+            <div className={cls.RerurnPage__left__form__block__info}>
+              <div><b>ФИО: </b>{userValue?.fullName}</div>
+              <div><b>Адресс: </b>{userValue?.address}</div>
+              <div><b>Номер телефона: </b>{userValue?.phoneNumber}</div>
             </div>
-          ) : null}
+          </div>
+          
 
-          <Input
-            loading={loading}
-            control={control}
-            label="Состояние книги при возврате:"
-            name="condition"
-            type="text"
-            required="Обязательное поле"
-          />
-          <Input
-            loading={loading}
-            control={control}
-            label="Комментарий к выдаче:"
-            name="comment"
-            type="text"
-          />
+          <div className={cls.RerurnPage__left__form__block}>
+            <SelectForm
+              loading={loading}
+              className={cls.select}
+              control={control}
+              label="Книга:"
+              name="bookSelect"
+              required="Обязательное поле"
+              options={bookOptions}
+            />
+            <div className={cls.RerurnPage__left__form__block__info}>
+              <div><b>Название: </b>{bookValue?.title}</div>
+              <div><b>Описание: </b>{bookValue?.content}</div>
+              <div><b>Дата публикации: </b>{bookValue?.publishDate}</div>
+            </div>
+          </div>
 
-          <Button
-            loading={loading}
-            className="flex-end"
-            type="submit"
-            onClick={onSubmit}
-          >
-            Оформить возврат
-          </Button>
+          
+          <div className={cls.RerurnPage__left__form__block}>
+            <Input
+              loading={loading}
+              control={control}
+              label="Состояние книги при возврате:"
+              name="condition"
+              type="text"
+              required="Обязательное поле"
+            />
+            {bookValue ? (
+              <div className={cls.RerurnPage__left__form__block__info}>
+                <div><b>Состояние книги при выдаче:</b> {commentValueOld}</div>
+              </div>
+            ) : null}
+          </div>
+
+          <div className={cls.RerurnPage__left__form__block}>
+            <Input
+              loading={loading}
+              control={control}
+              label="Комментарий к возврату:"
+              name="comment"
+              type="text"
+            />
+          </div>
+          
+          
+          <div className={cls.RerurnPage__left__form__btn}>
+            <Button
+              loading={loading}
+              className="flex-end"
+              type="submit"
+              onClick={onSubmit}
+            >
+              Оформить возврат
+            </Button>
+          </div>
         </form>
       </div>
-      <div className={cls.info}>
-        <p>Правила резервирования книг:</p>
-        <ol>
+      <div className={cls.RerurnPage__right}>
+        <div className={cls.RerurnPage__right__title}>
+            <b>Правила резервирования книг:</b>
+        </div>
+        <ol className={cls.RerurnPage__right__rules}>
           <li>
             1. Если в списке читателей нет человека, который хочет взять книгу,
             следует зарегистрировать его в базе нажав на соответствующую кнопку.
