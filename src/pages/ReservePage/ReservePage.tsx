@@ -13,7 +13,11 @@ import { useDisclosure } from "@nextui-org/react"
 import { Modal } from "../../components/Modal/Modal"
 import { InputSelect } from "../../components/InputSelect/InputSelect"
 import { Authors, AuthorsMock } from "../../data/Authors"
+<<<<<<< HEAD
 import { AddUser } from "../../components/AddUser/AddUser"
+=======
+import { PageTitle } from "../../components/PageTitle/PageTitle"
+>>>>>>> 4f2a5b1d3d4fb8e5b72f446b62df1b46d9c8a65c
 
 interface SelectProps {
   value: number
@@ -88,64 +92,71 @@ export const ReservePage = () => {
   })
 
   return (
-    <div className={cls.container}>
-      <div className={cls.wrapper__form}>
-        <h1>Зарезервировать книгу</h1>
-        <form onSubmit={onSubmit}>
-          <div className="flex">
-            <div className={cls.box}>
-              <InputSelect
-                type="text"
-                control={control}
-                label="Книга:"
-                name="bookSelect"
-                required="Обязательное поле"
-                options={bookOptions}
-              />
-              <div>
-                <div>{authorsOptions[bookValue?.authorId]?.name}</div>
-                <div>{bookValue?.title}</div>
-                <div>{bookValue?.content}</div>
-                <div>{bookValue?.publishDate}</div>
+    <div className={cls.ReserveBook}>
+      <div className={cls.ReserveBook__right}>
+        <PageTitle title={'Зарезервировать книгу'}/>
+        <form className={cls.ReserveBook__right__form} onSubmit={onSubmit}>
+          <div className={cls.ReserveBook__right__form__inputBlock} >
+            <div className={cls.ReserveBook__right__form__inputBlock__input}>
+              <div className={cls.ReserveBook__right__form__inputBlock__input__block}>
+                <InputSelect
+                  type="text"
+                  control={control}
+                  label="Книга:"
+                  name="bookSelect"
+                  required="Обязательное поле"
+                  options={bookOptions}
+                />
+                <div className={cls.ReserveBook__right__form__inputBlock__input__info}>
+                <div className=""><b>Подробнее:</b></div>
+                  <div>Автор: {authorsOptions[bookValue?.authorId]?.name}</div>
+                  <div>Название: {bookValue?.title}</div>
+                  <div>Дата выхода: {bookValue?.publishDate}</div>
+                </div>
               </div>
             </div>
 
-            <div className={cls.box}>
-              <InputSelect
-                type="text"
-                control={control}
-                label="Читатель:"
-                name="userSelect"
-                required="Обязательное поле"
-                options={userOptions}
-              />
-              <div>
-                <div>{userValue?.id}</div>
-                <div>{userValue?.fullName}</div>
-                <div>{userValue?.description}</div>
-                <div>{userValue?.address}</div>
-                <div>{userValue?.email}</div>
-                <div>{userValue?.phoneNumber}</div>
+            <div className={cls.ReserveBook__right__form__inputBlock__input}>
+              <div className={cls.ReserveBook__right__form__inputBlock__input__block}>
+                <InputSelect
+                  type="text"
+                  control={control}
+                  label="Читатель:"
+                  name="userSelect"
+                  required="Обязательное поле"
+                  options={userOptions}
+                />
+                <div className={cls.ReserveBook__right__form__inputBlock__input__info}>
+                  <div className=""><b>Подробнее:</b></div>
+                  <div>ФИО: {userValue?.fullName}</div>
+                  <div>Почта: {userValue?.email}</div>
+                  <div>Номер телефона: {userValue?.phoneNumber}</div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="flex">
-            <Input
-              control={control}
-              label="Состояние книги при выдаче:"
-              name="condition"
-              type="text"
-              required="Обязательное поле"
-            />
-            <Input
-              control={control}
-              label="Комментарий к выдаче:"
-              name="comment"
-              type="text"
-            />
+          <div className={cls.ReserveBook__right__form__inputBlock}>
+            <div className={cls.ReserveBook__right__form__inputBlock__input}>
+              <Input
+                control={control}
+                label="Состояние книги при выдаче:"
+                name="condition"
+                type="text"
+                required="Обязательное поле"
+              />
+              </div>
+            <div className={cls.ReserveBook__right__form__inputBlock__input}>
+              <Input
+                control={control}
+                label="Комментарий к выдаче:"
+                name="comment"
+                type="text"
+              />
+            </div>
           </div>
 
+<<<<<<< HEAD
           <Button className="flex-end" type="button" onClick={onOpen}>
             Добавить читателя
           </Button>
@@ -153,6 +164,25 @@ export const ReservePage = () => {
             Добавить Книгу
           </Button>
           <p>Правила резервирования книг:</p>
+=======
+          <div className={cls.ReserveBook__right__form__btns}>
+            <Button
+              type="button"
+              onClick={() => navigate("/reader/add")}
+            >
+              Добавить читателя
+            </Button>
+            <Button type="submit" onClick={onSubmit}>
+              Добавить Книгу
+            </Button>
+          </div>
+        </form>
+
+        <div className={cls.ReserveBook__right__form__rules}>
+          <div className={cls.ReserveBook__right__form__rules__title}>
+            <PageTitle title={'Правила резервирования книг:'}/>
+          </div>
+>>>>>>> 4f2a5b1d3d4fb8e5b72f446b62df1b46d9c8a65c
           <ol>
             <li>
               1. Если в списке читателей нет человека, который хочет взять
@@ -168,30 +198,54 @@ export const ReservePage = () => {
               состояния книги.
             </li>
           </ol>
-        </form>
+        </div>
+        
       </div>
-      <div className={cls.info}>
-        <h3>Итоговая информация:</h3>
-        {userValue ? (
-          <div>
-            <div>Читатель:</div>
-            <div>{userValue?.fullName}</div>
-            <div>{userValue?.address}</div>
-            <div>{userValue?.email}</div>
-            <div>{userValue?.phoneNumber}</div>
+      <div className={cls.ReserveBook__left}>
+        <div className={cls.ReserveBook__left__info}>
+          <h3 className={cls.ReserveBook__left__info__title}><b>Общая информация:</b></h3>
+          {bookValue ? (
+            <div className={cls.ReserveBook__left__info__block}>
+              <div><b>Книга:</b></div>
+              <div>Название: {bookValue?.title}</div>
+              <div>Дата выпуска: {bookValue?.publishDate}</div>
+            </div>
+          ) : null}
+          {userValue ? (
+            <div className={cls.ReserveBook__left__info__block}>
+              <div><b>Читатель:</b></div>
+              <div>ФИО: {userValue?.fullName}</div>
+              <div>Адресс: {userValue?.address}</div>
+              <div>Почта: {userValue?.email}</div>
+              <div>Номер телефона: {userValue?.phoneNumber}</div>
+            </div>
+          ) : null}
+          {conditionValue ? (
+            <div className={cls.ReserveBook__left__info__block}> 
+              <div ><b>Состояние книги при выдаче:</b></div>
+              <div className={cls.ReserveBook__left__info__block__text}>{conditionValue}</div>
+            </div>
+          ) : null}
+          {commentValue ? (
+          <div className={cls.ReserveBook__left__info__block}> 
+            <div><b>Комментарий:</b></div>
+            <div className={cls.ReserveBook__left__info__block__text}>{commentValue}</div>
           </div>
-        ) : null}
-        {bookValue ? (
-          <div>
-            <div>Книга:</div>
-            <div>{bookValue?.title}</div>
-            <div>{bookValue?.publishDate}</div>
-          </div>
-        ) : null}
-        {conditionValue ? (
-          <div>Состояние книги при выдаче: {conditionValue}</div>
-        ) : null}
-        {commentValue ? <div>Комментарий: {commentValue}</div> : null}
+          ) : null}
+        </div>
+        <div className={cls.ReserveBook__left__modal}>
+          <Button onClick={() => onOpen()}>Всплывающее окно</Button>
+          <Modal headerTitle="Тут название окна" isOpen={isOpen} onClose={onClose}>
+            <InputSelect
+              control={control}
+              label="Тестовое поле:"
+              name="bookSelect"
+              type="text"
+              required="Обязательное поле"
+              options={bookOptions}
+            />
+          </Modal>
+        </div>
       </div>
       <Modal
         headerTitle="Внести читателя в базу"
