@@ -13,11 +13,8 @@ import { useDisclosure } from "@nextui-org/react"
 import { Modal } from "../../components/Modal/Modal"
 import { InputSelect } from "../../components/InputSelect/InputSelect"
 import { Authors, AuthorsMock } from "../../data/Authors"
-<<<<<<< HEAD
 import { AddUser } from "../../components/AddUser/AddUser"
-=======
 import { PageTitle } from "../../components/PageTitle/PageTitle"
->>>>>>> 4f2a5b1d3d4fb8e5b72f446b62df1b46d9c8a65c
 
 interface SelectProps {
   value: number
@@ -94,11 +91,15 @@ export const ReservePage = () => {
   return (
     <div className={cls.ReserveBook}>
       <div className={cls.ReserveBook__right}>
-        <PageTitle title={'Зарезервировать книгу'}/>
+        <PageTitle title={"Зарезервировать книгу"} />
         <form className={cls.ReserveBook__right__form} onSubmit={onSubmit}>
-          <div className={cls.ReserveBook__right__form__inputBlock} >
+          <div className={cls.ReserveBook__right__form__inputBlock}>
             <div className={cls.ReserveBook__right__form__inputBlock__input}>
-              <div className={cls.ReserveBook__right__form__inputBlock__input__block}>
+              <div
+                className={
+                  cls.ReserveBook__right__form__inputBlock__input__block
+                }
+              >
                 <InputSelect
                   type="text"
                   control={control}
@@ -107,8 +108,14 @@ export const ReservePage = () => {
                   required="Обязательное поле"
                   options={bookOptions}
                 />
-                <div className={cls.ReserveBook__right__form__inputBlock__input__info}>
-                <div className=""><b>Подробнее:</b></div>
+                <div
+                  className={
+                    cls.ReserveBook__right__form__inputBlock__input__info
+                  }
+                >
+                  <div className="">
+                    <b>Подробнее:</b>
+                  </div>
                   <div>Автор: {authorsOptions[bookValue?.authorId]?.name}</div>
                   <div>Название: {bookValue?.title}</div>
                   <div>Дата выхода: {bookValue?.publishDate}</div>
@@ -117,7 +124,11 @@ export const ReservePage = () => {
             </div>
 
             <div className={cls.ReserveBook__right__form__inputBlock__input}>
-              <div className={cls.ReserveBook__right__form__inputBlock__input__block}>
+              <div
+                className={
+                  cls.ReserveBook__right__form__inputBlock__input__block
+                }
+              >
                 <InputSelect
                   type="text"
                   control={control}
@@ -126,8 +137,14 @@ export const ReservePage = () => {
                   required="Обязательное поле"
                   options={userOptions}
                 />
-                <div className={cls.ReserveBook__right__form__inputBlock__input__info}>
-                  <div className=""><b>Подробнее:</b></div>
+                <div
+                  className={
+                    cls.ReserveBook__right__form__inputBlock__input__info
+                  }
+                >
+                  <div className="">
+                    <b>Подробнее:</b>
+                  </div>
                   <div>ФИО: {userValue?.fullName}</div>
                   <div>Почта: {userValue?.email}</div>
                   <div>Номер телефона: {userValue?.phoneNumber}</div>
@@ -145,7 +162,7 @@ export const ReservePage = () => {
                 type="text"
                 required="Обязательное поле"
               />
-              </div>
+            </div>
             <div className={cls.ReserveBook__right__form__inputBlock__input}>
               <Input
                 control={control}
@@ -156,23 +173,11 @@ export const ReservePage = () => {
             </div>
           </div>
 
-<<<<<<< HEAD
-          <Button className="flex-end" type="button" onClick={onOpen}>
-            Добавить читателя
-          </Button>
-          <Button className="flex-end" type="submit" onClick={onSubmit}>
-            Добавить Книгу
-          </Button>
-          <p>Правила резервирования книг:</p>
-=======
           <div className={cls.ReserveBook__right__form__btns}>
-            <Button
-              type="button"
-              onClick={() => navigate("/reader/add")}
-            >
+            <Button className="flex-end" type="button" onClick={onOpen}>
               Добавить читателя
             </Button>
-            <Button type="submit" onClick={onSubmit}>
+            <Button className="flex-end" type="submit" onClick={onSubmit}>
               Добавить Книгу
             </Button>
           </div>
@@ -180,9 +185,9 @@ export const ReservePage = () => {
 
         <div className={cls.ReserveBook__right__form__rules}>
           <div className={cls.ReserveBook__right__form__rules__title}>
-            <PageTitle title={'Правила резервирования книг:'}/>
+            <PageTitle title={"Правила резервирования книг:"} />
           </div>
->>>>>>> 4f2a5b1d3d4fb8e5b72f446b62df1b46d9c8a65c
+
           <ol>
             <li>
               1. Если в списке читателей нет человека, который хочет взять
@@ -199,21 +204,26 @@ export const ReservePage = () => {
             </li>
           </ol>
         </div>
-        
       </div>
       <div className={cls.ReserveBook__left}>
         <div className={cls.ReserveBook__left__info}>
-          <h3 className={cls.ReserveBook__left__info__title}><b>Общая информация:</b></h3>
+          <h3 className={cls.ReserveBook__left__info__title}>
+            <b>Общая информация:</b>
+          </h3>
           {bookValue ? (
             <div className={cls.ReserveBook__left__info__block}>
-              <div><b>Книга:</b></div>
+              <div>
+                <b>Книга:</b>
+              </div>
               <div>Название: {bookValue?.title}</div>
               <div>Дата выпуска: {bookValue?.publishDate}</div>
             </div>
           ) : null}
           {userValue ? (
             <div className={cls.ReserveBook__left__info__block}>
-              <div><b>Читатель:</b></div>
+              <div>
+                <b>Читатель:</b>
+              </div>
               <div>ФИО: {userValue?.fullName}</div>
               <div>Адресс: {userValue?.address}</div>
               <div>Почта: {userValue?.email}</div>
@@ -221,21 +231,33 @@ export const ReservePage = () => {
             </div>
           ) : null}
           {conditionValue ? (
-            <div className={cls.ReserveBook__left__info__block}> 
-              <div ><b>Состояние книги при выдаче:</b></div>
-              <div className={cls.ReserveBook__left__info__block__text}>{conditionValue}</div>
+            <div className={cls.ReserveBook__left__info__block}>
+              <div>
+                <b>Состояние книги при выдаче:</b>
+              </div>
+              <div className={cls.ReserveBook__left__info__block__text}>
+                {conditionValue}
+              </div>
             </div>
           ) : null}
           {commentValue ? (
-          <div className={cls.ReserveBook__left__info__block}> 
-            <div><b>Комментарий:</b></div>
-            <div className={cls.ReserveBook__left__info__block__text}>{commentValue}</div>
-          </div>
+            <div className={cls.ReserveBook__left__info__block}>
+              <div>
+                <b>Комментарий:</b>
+              </div>
+              <div className={cls.ReserveBook__left__info__block__text}>
+                {commentValue}
+              </div>
+            </div>
           ) : null}
         </div>
         <div className={cls.ReserveBook__left__modal}>
           <Button onClick={() => onOpen()}>Всплывающее окно</Button>
-          <Modal headerTitle="Тут название окна" isOpen={isOpen} onClose={onClose}>
+          <Modal
+            headerTitle="Тут название окна"
+            isOpen={isOpen}
+            onClose={onClose}
+          >
             <InputSelect
               control={control}
               label="Тестовое поле:"
