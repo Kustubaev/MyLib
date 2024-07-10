@@ -26,6 +26,7 @@ interface ButtonProps {
     | "danger"
     | undefined
   onClick?: () => void
+  onPress?: () => void
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -38,6 +39,7 @@ export const Button: FC<ButtonProps> = ({
   color,
   isIconOnly,
   onClick,
+  onPress,
   ...otherProps
 }) => {
   return (
@@ -51,6 +53,7 @@ export const Button: FC<ButtonProps> = ({
       isIconOnly={isIconOnly}
       fullWidth={fullWidth}
       onClick={onClick}
+      onPress={onPress}
       {...otherProps}
     >
       {children}

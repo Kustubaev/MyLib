@@ -9,6 +9,9 @@ import { BooksMock } from "../../data/Books"
 import { UsersMock } from "../../data/Users"
 import { useNavigate } from "react-router-dom"
 import cls from "./ReservePage.module.scss"
+import { useDisclosure } from "@nextui-org/react"
+import { Modal } from "../../components/Modal/Modal"
+import { InputSelect } from "../../components/InputSelect/InputSelect"
 
 interface SelectProps {
   value: number
@@ -29,6 +32,9 @@ export const ReservePage = () => {
   const [commentValue, setCommentValue] = useState<string>()
 
   // Для отрисовки выбранных данных используем bookValue и userValue
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const data = {}
 
   const {
     handleSubmit,
@@ -57,6 +63,7 @@ export const ReservePage = () => {
 
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
+      value.bookSelect && onClose()
       setBookValue(books[parseInt(value.bookSelect)])
       setUserValue(users[parseInt(value.userSelect)])
       setConditionValue(value.condition)
@@ -67,23 +74,6 @@ export const ReservePage = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data)
-
-    // const newData = {
-    //   ...data,
-    //   authorId: parseInt(data.authorId, 10),
-    //   pageCount: parseInt(data.pageCount, 10),
-    //   isPublic: Boolean(data.isPublic),
-    //   publishDate: data.publishDate,
-    //   publishHouse: data.publishHouse,
-    //   title: data.title,
-    // }
-    // try {
-    //   await create..{ newData, genreId }).unwrap()
-    //   setValue("post", "")
-    //   await triggerGetAllBooks().unwrap()
-    // } catch (error) {
-    //   console.log("err", error)
-    // }
   })
 
   return (
@@ -93,6 +83,14 @@ export const ReservePage = () => {
         <form onSubmit={onSubmit}>
           <div className="flex">
             <div className={cls.box}>
+              <InputSelect
+                control={control}
+                label="Тестовое поле:"
+                name="bookSelect"
+                type="text"
+                required="Обязательное поле"
+                options={bookOptions}
+              />
               <SelectForm
                 className={cls.select}
                 control={control}
@@ -196,6 +194,17 @@ export const ReservePage = () => {
         ) : null}
         {commentValue ? <div>Комментарий: {commentValue}</div> : null}
       </div>
+      <Button onClick={() => onOpen()}>Всплывающее окно</Button>
+      <Modal headerTitle="Тут название окна" isOpen={isOpen} onClose={onClose}>
+        <InputSelect
+          control={control}
+          label="Тестовое поле:"
+          name="bookSelect"
+          type="text"
+          required="Обязательное поле"
+          options={bookOptions}
+        />
+      </Modal>
     </div>
   )
 }
