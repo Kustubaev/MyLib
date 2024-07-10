@@ -129,7 +129,11 @@ export const AddBookPage = () => {
           </li>
         </ol>
       </div>
-      <Modal headerTitle="Тут название окна" isOpen={isOpen} onClose={onClose}>
+      <Modal
+        headerTitle="Внести автора в базу"
+        isOpen={isOpen}
+        onClose={onClose}
+      >
         <AddAuthor onClose={onClose} />
       </Modal>
     </div>

@@ -13,6 +13,7 @@ import { useDisclosure } from "@nextui-org/react"
 import { Modal } from "../../components/Modal/Modal"
 import { InputSelect } from "../../components/InputSelect/InputSelect"
 import { Authors, AuthorsMock } from "../../data/Authors"
+import { AddUser } from "../../components/AddUser/AddUser"
 
 interface SelectProps {
   value: number
@@ -43,6 +44,8 @@ export const ReservePage = () => {
     setValue,
     watch,
   } = useForm()
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     authors &&
@@ -143,11 +146,7 @@ export const ReservePage = () => {
             />
           </div>
 
-          <Button
-            className="flex-end"
-            type="button"
-            onClick={() => navigate("/reader/add")}
-          >
+          <Button className="flex-end" type="button" onClick={onOpen}>
             Добавить читателя
           </Button>
           <Button className="flex-end" type="submit" onClick={onSubmit}>
@@ -194,6 +193,13 @@ export const ReservePage = () => {
         ) : null}
         {commentValue ? <div>Комментарий: {commentValue}</div> : null}
       </div>
+      <Modal
+        headerTitle="Внести читателя в базу"
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <AddUser onClose={onClose} />
+      </Modal>
     </div>
   )
 }

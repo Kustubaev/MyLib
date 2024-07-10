@@ -1,11 +1,9 @@
-import React, { useState, FC } from "react"
+import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
-import cls from "./AddAuthor.module.scss"
-import { Input } from "../Input/Input"
-import { Button } from "../Button/Button"
-import { Textarea } from "../Textarea/Textarea"
-import { Spinner } from "@nextui-org/react"
 import { IoIosCheckmarkCircleOutline } from "react-icons/io"
+import { Button } from "../Button/Button"
+import { Input } from "../Input/Input"
+import { Textarea } from "../Textarea/Textarea"
 
 interface AddAuthorProps {
   onClose: () => void
