@@ -1,31 +1,76 @@
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
+.ReserveBook {
+        display: flex;
+        flex-direction: row;
 
-.info {
-  width: 28%;
-}
+        &__right {
+                width: 70%;
 
-.wrapper__form {
-  width: 70%;
-}
+                &__form{
+                        &__inputBlock{
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-between;
+                                margin-bottom: 20px;
+                                
+                                &__input{
+                                        width: 48%;
 
-.form {
-  display: flex;
-  justify-content: space-between;
+                                        &__block{
 
-  &__right {
+                                        }
 
-    width: 45%;
-  }
+                                        &__info{
+                                                margin-top: 5px;
+                                                padding: 0 10px;
+                                        }
+                                }
+                        }
 
-  &__left {
-    width: 45%;
-  }
-}
+                        &__btns {
+                                margin-top: 30px;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-between;
+                        }
 
-.box {
-  width: 50%;
+                        &__rules{
+
+                                &__title{
+
+                                        div {
+                                                margin: 40px 0 20px;
+                                        }
+                                }
+                        }
+                }
+        }       
+
+
+        &__left {
+                padding: 30px 20px;
+                width: 30%;
+
+                &__info {
+                        &__title {
+                                font-size: 20px;
+                                margin-bottom: 10px;
+                        }
+
+                        &__block {
+                                display: flex;
+                                flex-direction: column;
+                                margin-bottom: 8px;
+
+                                &__text{
+                                        flex-basis:100%;
+                                        flex-grow: 0;
+                                        word-wrap: break-word;
+                                }
+                        }
+                }
+
+                &__modal{
+                        display: none;
+                }
+        }
 }
