@@ -13,6 +13,7 @@ import { Modal } from "../../components/Modal/Modal"
 import { useDisclosure } from "@nextui-org/react"
 import { AddAuthor } from "../../components/AddAuthor/AddAuthor"
 import { AddGenre } from "../../components/AddGenre/AddGenre"
+import { PageTitle } from "../../components/PageTitle/PageTitle"
 
 interface SelectProps {
   value: number
@@ -63,12 +64,12 @@ export const AddBookPage = () => {
   })
 
   return (
-    <div className={cls.container}>
-      <div className={cls.wrapper__form}>
-        <h1>Добавление новой книги</h1>
-        <form onSubmit={onSubmit}>
-          <div className={cls.form}>
-            <div className={cls.form__left}>
+    <div className={cls.AddBook}>
+      <div className={cls.AddBook__right}>
+        <PageTitle title={'Добавление новой книги'}/>
+        <form onSubmit={onSubmit} className={cls.AddBook__right__form}>
+          <div className={cls.AddBook__right__form__inputs}>
+            <div className={cls.AddBook__right__form__inputs__block}>
               <Input
                 loading={loading}
                 control={control}
@@ -103,7 +104,7 @@ export const AddBookPage = () => {
                 required="Обязательное поле"
               />
             </div>
-            <div className={cls.form__right}>
+            <div className={cls.AddBook__right__form__inputs__block}>
               <Input
                 loading={loading}
                 control={control}
@@ -130,25 +131,29 @@ export const AddBookPage = () => {
               />
             </div>
           </div>
-          <Button onClick={() => authorDisclosure.onOpen()}>
-            Добавить автора
-          </Button>
-          <Button onClick={() => genreDisclosure.onOpen()}>
-            Добавить жанр
-          </Button>
-          <Button
-            loading={loading}
-            className="flex-end"
-            type="submit"
-            onClick={onSubmit}
-          >
-            Добавить книгу
-          </Button>
+          <div className={cls.AddBook__right__form__addBtns}>
+            <Button onClick={() => authorDisclosure.onOpen()}>
+              Добавить автора
+            </Button>
+            <Button onClick={() => genreDisclosure.onOpen()}>
+              Добавить жанр
+            </Button>
+          </div>
+          <div className={cls.AddBook__right__form__submitBtn}>
+            <Button
+              loading={loading}
+              className="flex-end"
+              type="submit"
+              onClick={onSubmit}
+            >
+              Добавить книгу
+            </Button>
+          </div>
         </form>
       </div>
-      <div className={cls.info}>
-        <p>Правила резервирования книг:</p>
-        <ol>
+      <div className={cls.AddBook__rules}>
+        <p className={cls.AddBook__rules__title}><b>Правила резервирования книг:</b></p>
+        <ol className={cls.AddBook__rules__list}>
           <li>
             1. Если в списке читателей нет человека, который хочет взять книгу,
             следует зарегистрировать его в базе нажав на соответствующую кнопку.
