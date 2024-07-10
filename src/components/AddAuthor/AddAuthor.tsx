@@ -38,7 +38,7 @@ export const AddAuthor: FC<AddAuthorProps> = (props) => {
   return (
     <>
       {sent ? (
-        <IoIosCheckmarkCircleOutline />
+        <IoIosCheckmarkCircleOutline color="green" size="250px" />
       ) : (
         <form onSubmit={onSubmit}>
           <div>
