@@ -4,6 +4,7 @@ import { IoIosCheckmarkCircleOutline } from "react-icons/io"
 import { Button } from "../Button/Button"
 import { Input } from "../Input/Input"
 import { Textarea } from "../Textarea/Textarea"
+import cls from "./AddUser.module.scss"
 
 interface AddAuthorProps {
   onClose: () => void
@@ -38,9 +39,9 @@ export const AddUser: FC<AddAuthorProps> = (props) => {
       {sent ? (
         <IoIosCheckmarkCircleOutline color="green" size="250px" />
       ) : (
-        <form onSubmit={onSubmit}>
-          <div className="flex">
-            <div>
+        <form onSubmit={onSubmit} className={cls.AddUser}>
+          <div className={cls.AddUser__block}>
+            <div className={cls.AddUser__block__col}>
               <Input
                 loading={loading}
                 control={control}
@@ -48,6 +49,7 @@ export const AddUser: FC<AddAuthorProps> = (props) => {
                 name="firstname"
                 type="string"
                 required="Обязательное поле"
+                className={cls.AddUser__block__col__element}
               />
               <Input
                 loading={loading}
@@ -56,6 +58,7 @@ export const AddUser: FC<AddAuthorProps> = (props) => {
                 name="birthday"
                 type="date"
                 required="Обязательное поле"
+                className={cls.AddUser__block__col__element}
               />
               <Input
                 loading={loading}
@@ -64,9 +67,10 @@ export const AddUser: FC<AddAuthorProps> = (props) => {
                 name="login"
                 type="string"
                 required="Обязательное поле"
+                className={cls.AddUser__block__col__element}
               />
             </div>
-            <div>
+            <div className={cls.AddUser__block__col}>
               <Input
                 loading={loading}
                 control={control}
@@ -74,6 +78,7 @@ export const AddUser: FC<AddAuthorProps> = (props) => {
                 name="lastname"
                 type="string"
                 required="Обязательное поле"
+                className={cls.AddUser__block__col__element}
               />
               <Input
                 loading={loading}
@@ -81,6 +86,8 @@ export const AddUser: FC<AddAuthorProps> = (props) => {
                 label="Адресс проживания:"
                 name="address"
                 type="string"
+                required="Обязательное поле"
+                className={cls.AddUser__block__col__element}
               />
               <Input
                 loading={loading}
@@ -89,12 +96,13 @@ export const AddUser: FC<AddAuthorProps> = (props) => {
                 name="email"
                 type="email"
                 required="Обязательное поле"
+                className={cls.AddUser__block__col__element}
               />
             </div>
           </div>
           <Button
             loading={loading}
-            className="flex-end"
+            className={cls.AddUser__btn}
             type="submit"
             onClick={onSubmit}
           >

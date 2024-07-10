@@ -7,7 +7,8 @@ import {
 } from "@nextui-org/react"
 import { FC, ReactNode } from "react"
 import { Button } from "../Button/Button"
-
+import cls from "./Modal.module.scss"
+ 
 type Props = {
   isOpen: boolean
   onClose: () => void
@@ -22,15 +23,15 @@ export const Modal: FC<Props> = ({
   headerTitle,
 }) => {
   return (
-    <NModal size="lg" isOpen={isOpen} onClose={onClose} backdrop="blur">
-      <ModalContent>
+    <NModal size="lg" isOpen={isOpen} onClose={onClose} backdrop="blur" className={cls.Modal}>
+      <ModalContent className={cls.Modal__form}>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">
+            <ModalHeader className={cls.Modal__form__header}>
               {headerTitle}
             </ModalHeader>
-            <ModalBody>{children}</ModalBody>
-            <ModalFooter>
+            <ModalBody className={cls.Modal__form__body}>{children}</ModalBody>
+            {/* <ModalFooter className={cls.Modal__form__footer}>
               <Button
                 color="danger"
                 variant="flat"
@@ -39,7 +40,7 @@ export const Modal: FC<Props> = ({
               >
                 Закрыть
               </Button>
-            </ModalFooter>
+            </ModalFooter> */}
           </>
         )}
       </ModalContent>
