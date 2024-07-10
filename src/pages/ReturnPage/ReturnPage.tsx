@@ -26,7 +26,7 @@ export const ReturnPage = () => {
   const [userValue, setUserValue] = useState<User>()
   const commentValueOld = "Легкие потертости на обложке."
 
-  // Для отрисовки выбранных данных используем bookValue и userValue
+  const [loading, setLoading] = useState(false)
 
   const {
     handleSubmit,
@@ -35,6 +35,8 @@ export const ReturnPage = () => {
     setValue,
     watch,
   } = useForm()
+
+  console.log(control)
 
   useEffect(() => {
     books &&
@@ -62,24 +64,11 @@ export const ReturnPage = () => {
   }, [watch])
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
-
-    // const newData = {
-    //   ...data,
-    //   authorId: parseInt(data.authorId, 10),
-    //   pageCount: parseInt(data.pageCount, 10),
-    //   isPublic: Boolean(data.isPublic),
-    //   publishDate: data.publishDate,
-    //   publishHouse: data.publishHouse,
-    //   title: data.title,
-    // }
-    // try {
-    //   await create..{ newData, genreId }).unwrap()
-    //   setValue("post", "")
-    //   await triggerGetAllBooks().unwrap()
-    // } catch (error) {
-    //   console.log("err", error)
-    // }
+    setLoading(true)
+    setTimeout(() => {
+      console.log(data)
+      setLoading(false)
+    }, 3000)
   })
 
   return (
@@ -88,6 +77,7 @@ export const ReturnPage = () => {
         <h1>Возврат книги</h1>
         <form onSubmit={onSubmit}>
           <SelectForm
+            loading={loading}
             className={cls.select}
             control={control}
             label="Читатель:"
@@ -105,6 +95,7 @@ export const ReturnPage = () => {
           </div>
 
           <SelectForm
+            loading={loading}
             className={cls.select}
             control={control}
             label="Книга:"
@@ -127,6 +118,7 @@ export const ReturnPage = () => {
           ) : null}
 
           <Input
+            loading={loading}
             control={control}
             label="Состояние книги при возврате:"
             name="condition"
@@ -134,13 +126,19 @@ export const ReturnPage = () => {
             required="Обязательное поле"
           />
           <Input
+            loading={loading}
             control={control}
             label="Комментарий к выдаче:"
             name="comment"
             type="text"
           />
 
-          <Button className="flex-end" type="submit" onClick={onSubmit}>
+          <Button
+            loading={loading}
+            className="flex-end"
+            type="submit"
+            onClick={onSubmit}
+          >
             Оформить возврат
           </Button>
         </form>

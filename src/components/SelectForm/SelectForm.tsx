@@ -8,6 +8,7 @@ interface Option {
 }
 
 interface SelectProps {
+  loading?: boolean
   value?: string
   options?: Option[] | null
   className?: string
@@ -50,6 +51,7 @@ interface SelectProps {
 
 export const SelectForm: FC<SelectProps> = (props) => {
   const {
+    loading,
     value,
     options,
     className,
@@ -78,6 +80,7 @@ export const SelectForm: FC<SelectProps> = (props) => {
 
   return (
     <NSelect
+      isDisabled={loading}
       variant={variant}
       size={size}
       id={name}
