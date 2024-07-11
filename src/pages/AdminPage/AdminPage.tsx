@@ -1,187 +1,96 @@
-import { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
-import { Book, User } from "../../Interface/Interface"
-import { Button } from "../../components/Button/Button"
-import { ErrorMessage } from "../../components/ErrorMessage/ErrorMessage"
-import { Input } from "../../components/Input/Input"
-import { SelectForm } from "../../components/SelectForm/SelectForm"
-import { BooksMock } from "../../data/Books"
-import { UsersMock } from "../../data/Users"
-import { useNavigate } from "react-router-dom"
-import cls from "./AddBookPage.module.scss"
-import { Modal } from "../../components/Modal/Modal"
-import { useDisclosure } from "@nextui-org/react"
-import { AddAuthor } from "../../components/AddAuthor/AddAuthor"
-import { AddGenre } from "../../components/AddGenre/AddGenre"
-import { PageTitle } from "../../components/PageTitle/PageTitle"
+import React from 'react'
+import { Outlet, useNavigate } from "react-router-dom"
+import cls from './AdminPage.module.scss'
+import { PageTitle } from '../../components/PageTitle/PageTitle'
 
-interface SelectProps {
-  value: number
-  name: string
-}
-
-export const AdmninPage = () => {
-  const genre = [
-    { value: "1", name: "Рассказы" },
-    { value: "2", name: "Новелла" },
-    { value: "3", name: "Роман" },
-  ]
-
-  const author = [
-    { value: "1", name: "Фёдор Михайлович Достоевский" },
-    { value: "2", name: "Александр Сергеевич Пушкин" },
-    { value: "3", name: "Лев Николаевич Толстой" },
-  ]
-
-  const authorDisclosure = useDisclosure()
-  const genreDisclosure = useDisclosure()
-  const [loading, setLoading] = useState(false)
-
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    setValue,
-    watch,
-    reset,
-  } = useForm()
-
-  const onSubmit = handleSubmit(async (data) => {
-    setLoading(true)
-    setTimeout(() => {
-      console.log(data)
-      reset({
-        title: "",
-        total_Copies: "",
-        authorId: "",
-        condition: "",
-        content: "",
-        genreId: "",
-        date: "",
-      })
-      setLoading(false)
-    }, 3000)
-  })
+export const AdminPage = () => {
+  const navigate = useNavigate()
 
   return (
-    <div className={cls.AddBook}>
-      <div className={cls.AddBook__right}>
-        <PageTitle title={'Добавление новой книги'}/>
-        <form onSubmit={onSubmit} className={cls.AddBook__right__form}>
-          <div className={cls.AddBook__right__form__inputs}>
-            <div className={cls.AddBook__right__form__inputs__block}>
-              <Input
-                loading={loading}
-                control={control}
-                label="Название книги:"
-                name="title"
-                type="text"
-                required="Обязательное поле"
-              />
-              <Input
-                loading={loading}
-                control={control}
-                label="Количество копий:"
-                name="total_Copies"
-                type="number"
-                required="Обязательное поле"
-              />
-              <SelectForm
-                loading={loading}
-                className={cls.select}
-                control={control}
-                label="Автор:"
-                name="authorId"
-                required="Обязательное поле"
-                options={author}
-              />
-              <Input
-                loading={loading}
-                control={control}
-                label="Серийный номер:"
-                name="condition"
-                type="number"
-                required="Обязательное поле"
-              />
-            </div>
-            <div className={cls.AddBook__right__form__inputs__block}>
-              <Input
-                loading={loading}
-                control={control}
-                label="Описание книги:"
-                name="content"
-                type="text"
-              />
-              <SelectForm
-                loading={loading}
-                className={cls.select}
-                control={control}
-                label="Жанр:"
-                name="genreId"
-                required="Обязательное поле"
-                options={genre}
-              />
-              <Input
-                loading={loading}
-                control={control}
-                label="Дата публикации:"
-                name="date"
-                type="date"
-                required="Обязательное поле"
-              />
+    <div className={cls.Admin }>
+      <div className={cls.Admin__title}>
+       <PageTitle title="Страница для работы библиотекаря"/>
+       <div className={cls.Admin__title__text}>
+        На данной странице представлен функционал для работы с резервированием книг, добавлением книг и так далее по списку.
+       </div>
+      </div>
+
+      <div className={cls.Admin__linksBlock}>
+        <div className={cls.Admin__linksBlock__block}>
+
+          <div className={cls.Admin__linksBlock__block__info}>
+            <h1 className={cls.Admin__linksBlock__block__info__title}>Оформление резервирование книги</h1>
+            <div className={cls.Admin__linksBlock__block__info__text}>
+              <div className="">На данной странице вы можете оформить выдачу книгию</div> 
+              <ol>
+                <li>1. Выбрать книгу из списка</li>
+                <li>2. Выбрать читателя из списка. В случае если читатель еще не зарегестрирован в сети, необходимо предоставить ему бланк для заполнения личной информациию и зарегестрировать его в системе нажав на соответствующую кнопку</li>
+                <li>3. Провести визуальный осмотр книги. Заполнить поле состояние при выдаче</li>
+                <li>4. Оставить комментарий(При необходимости)</li>
+              </ol>
             </div>
           </div>
-          <div className={cls.AddBook__right__form__addBtns}>
-            <Button onClick={() => authorDisclosure.onOpen()}>
-              Добавить автора
-            </Button>
-            <Button onClick={() => genreDisclosure.onOpen()}>
-              Добавить жанр
-            </Button>
+          
+          <button
+          className={cls.Admin__linksBlock__block__btn}
+          onClick={() => {
+            navigate("/admin/books/reserve")
+          }}
+          >
+            <span>Зарезервировать книгу</span>
+          </button>
+        </div>
+
+        <div className={cls.Admin__linksBlock__block}>
+
+          <div className={cls.Admin__linksBlock__block__info}>
+            <h1 className={cls.Admin__linksBlock__block__info__title}>Оформление возврата книги</h1>
+            <div className={cls.Admin__linksBlock__block__info__text}>
+              <div className="">На данной странице вы можете оформить возврат книги</div> 
+              <ol>
+                <li>1. Выбрать читателя из списка</li>
+                <li>2. Выбрать книгу, которую пользователь хочет вернуть</li>
+                <li>3. Провести визуальный осмотр книги. Заполнить поле состояние при возврате</li>
+                <li>4. Оставить комментарий(При необходимости)</li>
+              </ol>
+            </div>
           </div>
-          <div className={cls.AddBook__right__form__submitBtn}>
-            <Button
-              loading={loading}
-              className="flex-end"
-              type="submit"
-              onClick={onSubmit}
-            >
-              Добавить книгу
-            </Button>
+
+          <button
+          className={cls.Admin__linksBlock__block__btn}
+          onClick={() => {
+            navigate("/admin/books/return")
+          }}
+          >
+            <span>Оформить возврат книги</span>
+          </button>
+        </div>
+
+        <div className={cls.Admin__linksBlock__block}>
+
+          <div className={cls.Admin__linksBlock__block__info}>
+            <h1 className={cls.Admin__linksBlock__block__info__title}>Добавление книги</h1>
+            <div className={cls.Admin__linksBlock__block__info__text}>
+              <div className="">Данная страница предоставляет возможность добавления книги в базу</div> 
+              <ol>
+                <li>1. Ввести все данные из спецификации тиража в соответствующие поля</li>
+                <li>2. Добавить обложку книги. Найти ее можно в письме на карпоративной почте по id спецификации тиража</li>
+                <li>3. В случае если в списках с авторами и жанрами нет соответствующих данных, необходимо нажать на соответствующие кнопки и добавить их вручную. Данные для добавления необходимой информации находится в спецификации тиража</li>
+                <li>4. Добавить книгу, предврательно перепроверив данные.</li>
+              </ol>
+            </div>
           </div>
-        </form>
+
+          <button
+          className={cls.Admin__linksBlock__block__btn}
+          onClick={() => {
+            navigate("/admin/books/add")
+          }}
+          >
+          <span>Добавить книгу</span>
+          </button>
+        </div>
       </div>
-      <div className={cls.AddBook__rules}>
-        <p className={cls.AddBook__rules__title}><b>Правила резервирования книг:</b></p>
-        <ol className={cls.AddBook__rules__list}>
-          <li>
-            1. Если в списке читателей нет человека, который хочет взять книгу,
-            следует зарегистрировать его в базе нажав на соответствующую кнопку.
-          </li>
-          <li>
-            2. Необходимо сверять информацию вносимую в базу, путем сравнения с
-            документом удостоверяющим личность.
-          </li>
-          <li>
-            3. Перед выдачей книги обязательно проводить ее осмотр для оценки
-            состояния книги.
-          </li>
-        </ol>
-      </div>
-      <Modal
-        headerTitle="Внести автора в базу"
-        isOpen={authorDisclosure.isOpen}
-        onClose={authorDisclosure.onClose}
-      >
-        <AddAuthor onClose={authorDisclosure.onClose} />
-      </Modal>
-      <Modal
-        headerTitle="Внести жанр в базу"
-        isOpen={genreDisclosure.isOpen}
-        onClose={genreDisclosure.onClose}
-      >
-        <AddGenre onClose={genreDisclosure.onClose} />
-      </Modal>
     </div>
   )
 }

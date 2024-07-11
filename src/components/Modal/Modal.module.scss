@@ -1,45 +1,44 @@
-.Modal{
-        &__form{
-                &__body{
+.Modal {
+  &__form {
+    &__body {
 
-                        display: flex;
-                        flex-direction: column;
-                        align-items: end;
-                        justify-content: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-                        svg {   
-                                width: 30%;
-                                display: block;
-                                margin: 0 auto;
-                        }
-                        
-                        form {
-                                div {
-                                        // display: flex;
-                                        // flex-direction: column;
+      svg {
+        width: 30%;
+        display: block;
+        margin: 0 auto;
+      }
 
-                                        div {
-                                                margin-bottom: 10px;
+      form {
+        div {
+          // display: flex;
+          // flex-direction: column;
 
-                                                div {
-                                                        margin: 0;
-                                                }
-                                        }
+          div {
+            margin-bottom: 10px;
 
-                                        
-                                }
+            div {
+              margin: 0;
+            }
+          }
 
-                                svg {
-                                        display: block;
-                                        margin: 0 auto;
-                                }
 
-                                button {
-                                        display: block;
-
-                                        margin: 20px auto;
-                                }
-                        }
-                }
         }
+
+        svg {
+          display: block;
+          margin: 0 auto;
+        }
+
+        button {
+          display: block;
+
+          margin: 20px auto;
+        }
+      }
+    }
+  }
 }
