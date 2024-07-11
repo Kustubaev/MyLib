@@ -1,14 +1,20 @@
 import { Card as NextUiCard } from "@nextui-org/react"
 import { useNavigate } from "react-router-dom"
 import { Book } from "../../Interface/Interface"
-import cls from "./Card.module.scss"
 import { Image } from "../Image/Image"
+import cls from "./Card.module.scss"
+import { Authors, AuthorsMock } from "../../data/Authors"
+import { useMemo } from "react"
 
 interface CardProps {
   book: Book
 }
 
 export const Card = ({ book }: CardProps) => {
+  const authors: Authors[] = useMemo(() => {
+    return [...AuthorsMock]
+  }, [])
+
   const navigate = useNavigate()
 
   const concatSrc = (path: string) => {
@@ -32,7 +38,7 @@ export const Card = ({ book }: CardProps) => {
             className={cls.Card__right__header__button}
             type="button"
             onClick={() => {
-              navigate(`/books/${book.id - 1}`)
+              navigate(`/books/${book.id}`)
             }}
           >
             Подробнее
@@ -42,7 +48,7 @@ export const Card = ({ book }: CardProps) => {
           <div className={cls.Card__right__info__block}>
             <div className={cls.Card__right__info__block__title}>Автор:</div>
             <div className={cls.Card__right__info__block__text}>
-              {book.authorId}
+              {authors?.[book.authorId]?.name}
             </div>
           </div>
           <div className={cls.Card__right__info__block}>

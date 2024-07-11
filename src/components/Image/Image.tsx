@@ -1,6 +1,5 @@
 import React, { FC } from "react"
 import cls from "./Image.module.scss"
-import { Image as NImage } from "@nextui-org/react"
 
 export enum CategoryVariantsImg {
   BIG__IMAGE = "BigImage",

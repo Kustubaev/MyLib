@@ -1,6 +1,7 @@
-import { Listbox, ListboxItem, Input as NextInput } from "@nextui-org/react"
+import { Listbox, ListboxItem, Input as NInput } from "@nextui-org/react"
 import { FC, useEffect, useMemo, useState } from "react"
 import { Control, useController, useWatch } from "react-hook-form"
+import cls from "./InputSelect.module.scss"
 
 interface Option {
   value: any
@@ -15,9 +16,11 @@ interface InputProps {
   type?: string
   required?: string
   options?: Option[] | undefined
+  messageNotFound?: string
 
   placeholder?: string
-  variant?: "flat" | "bordered" | "faded" | "underlined"
+  variantInput?: "flat" | "bordered" | "faded" | "underlined"
+  variantListbox?: "solid" | "bordered" | "light" | "flat" | "faded" | "shadow"
 }
 
 export const InputSelect: FC<InputProps> = (props) => {
@@ -31,7 +34,9 @@ export const InputSelect: FC<InputProps> = (props) => {
     options,
 
     placeholder,
-    variant = "bordered",
+    variantInput = "bordered",
+    variantListbox = "bordered",
+    messageNotFound = "Не найдено!",
   } = props
 
   const [valueInput, setValueInput] = useState("")
@@ -83,46 +88,58 @@ export const InputSelect: FC<InputProps> = (props) => {
     setOnInput(true)
   }
 
+  const onBlurInput = (e: any) => {
+    setValueInput("")
+    setOnInput(false)
+  }
+
   useEffect(() => {
     options && setValueInput(options?.[results]?.name)
   }, [results])
 
   return (
     <>
-      <NextInput
+      <NInput
         isDisabled={loading}
         value={valueInput}
         id={name}
         label={label}
         type={type}
-        variant={variant}
+        variant={variantInput}
         placeholder={placeholder}
-        errorMessage={`${errors[name]?.message ?? ""}`}
-        onChange={(e) => setValueInput(e.target.value)}
         onFocus={onFocusInput}
-        onBlur={() => setOnInput(false)}
+        onBlur={onBlurInput}
+        errorMessage={`${errors[name]?.message ?? ""}`}
+        isInvalid={invalid}
+        onChange={(e) => setValueInput(e.target.value)}
       />
 
-      {valueInput && onInput ? (
-        optionsSelect?.length ? (
-          <Listbox
-            aria-label="Multiple selection example"
-            variant="faded"
-            disallowEmptySelection
-            selectionMode="single"
-            selectedKeys={selectedKeys}
-            onSelectionChange={onChangeSelect}
-            name={field?.name}
-          >
-            {optionsSelect?.map((item) => (
-              <ListboxItem key={item.value} variant={variant}>
-                {item.name}
-              </ListboxItem>
-            ))}
-          </Listbox>
-        ) : (
-          <div>Таких книг нет!</div>
-        )
+      {onInput ? (
+        <div className={cls.container}>
+          {optionsSelect?.length ? (
+            <Listbox
+              aria-label="Multiple selection example"
+              variant="faded"
+              disallowEmptySelection
+              selectionMode="single"
+              selectedKeys={selectedKeys}
+              onSelectionChange={onChangeSelect}
+              className={cls.Listbox}
+            >
+              {optionsSelect?.map((item) => (
+                <ListboxItem
+                  key={item.value}
+                  variant={variantListbox}
+                  className={cls.ListboxItem}
+                >
+                  {item.name}
+                </ListboxItem>
+              ))}
+            </Listbox>
+          ) : (
+            <div className={cls.message}>{messageNotFound}</div>
+          )}
+        </div>
       ) : null}
     </>
   )

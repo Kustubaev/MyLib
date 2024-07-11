@@ -13,6 +13,7 @@ type InputProps = {
   required?: string
   endContent?: JSX.Element
   variant?: "flat" | "bordered" | "faded" | "underlined"
+  className?: string
 }
 
 export const Input: FC<InputProps> = ({
@@ -26,6 +27,8 @@ export const Input: FC<InputProps> = ({
   required = "",
   endContent,
   variant = "bordered",
+  className,
+  ...otherProps
 }) => {
   const {
     field,
@@ -52,6 +55,8 @@ export const Input: FC<InputProps> = ({
       onBlur={field?.onBlur}
       errorMessage={`${errors[name]?.message ?? ""}`}
       endContent={endContent}
+      className={className}
+      {...otherProps}
     />
   )
 }

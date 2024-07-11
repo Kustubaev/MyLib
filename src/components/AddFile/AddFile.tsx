@@ -1,5 +1,4 @@
-import { Input } from "@nextui-org/react"
-import React, { ChangeEvent, useState, FC, useEffect } from "react"
+import { ChangeEvent, FC, useEffect, useState } from "react"
 import { Control, useController } from "react-hook-form"
 import cls from "./AddFile.module.scss"
 

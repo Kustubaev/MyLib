@@ -88,7 +88,6 @@ export const ReservePage = () => {
   const onSubmit = handleSubmit(async (data) => {
     setLoading(true)
     setTimeout(() => {
-      console.log(data)
       reset({
         bookSelect: "",
         userSelect: "",
@@ -106,6 +105,28 @@ export const ReservePage = () => {
         <form className={cls.ReserveBook__right__form} onSubmit={onSubmit}>
           <div className={cls.ReserveBook__right__form__inputBlock}>
             <div className={cls.ReserveBook__right__form__inputBlock__input}>
+              <Input
+                loading={loading}
+                control={control}
+                label="Состояние книги при выдаче:"
+                name="condition"
+                type="text"
+                required="Обязательное поле"
+              />
+            </div>
+            <div className={cls.ReserveBook__right__form__inputBlock__input}>
+              <Input
+                loading={loading}
+                control={control}
+                label="Комментарий к выдаче:"
+                name="comment"
+                type="text"
+              />
+            </div>
+          </div>
+
+          <div className={cls.ReserveBook__right__form__inputBlock}>
+            <div className={cls.ReserveBook__right__form__inputBlock__input}>
               <div
                 className={
                   cls.ReserveBook__right__form__inputBlock__input__block
@@ -119,6 +140,7 @@ export const ReservePage = () => {
                   name="bookSelect"
                   required="Обязательное поле"
                   options={bookOptions}
+                  messageNotFound="Книга не найдена!"
                 />
                 <div
                   className={
@@ -149,6 +171,7 @@ export const ReservePage = () => {
                   name="userSelect"
                   required="Обязательное поле"
                   options={userOptions}
+                  messageNotFound="Читатель не найден!"
                 />
                 <div
                   className={
@@ -163,28 +186,6 @@ export const ReservePage = () => {
                   <div>Номер телефона: {userValue?.phoneNumber}</div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className={cls.ReserveBook__right__form__inputBlock}>
-            <div className={cls.ReserveBook__right__form__inputBlock__input}>
-              <Input
-                loading={loading}
-                control={control}
-                label="Состояние книги при выдаче:"
-                name="condition"
-                type="text"
-                required="Обязательное поле"
-              />
-            </div>
-            <div className={cls.ReserveBook__right__form__inputBlock__input}>
-              <Input
-                loading={loading}
-                control={control}
-                label="Комментарий к выдаче:"
-                name="comment"
-                type="text"
-              />
             </div>
           </div>
 

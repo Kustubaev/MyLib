@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Book } from "../../Interface/Interface"
 import { BooksMock } from "../../data/Books"
 import {
@@ -11,15 +11,10 @@ import { Card } from "../Card/Card"
 import { Select } from "../Select/Select"
 import cls from "./Books.module.scss"
 
-interface SeceltProps {
-  value: string
-  name: string
-}
-
 export const Books = () => {
-  const data = BooksMock
-
-  // const { data } = useGetAllBooksQuery()
+  const data: Book[] = useMemo(() => {
+    return [...BooksMock]
+  }, [])
 
   const [books, setBooks] = useState<Book[]>([])
   const [sortedKey, setSortedKey] = useState({
@@ -37,8 +32,6 @@ export const Books = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(sortedKey)
-
       let newArray = [...data]
       newArray = sortBooksMove(newArray, sortedKey.category)
       newArray = sortBookAuthor(newArray, sortedKey.author)

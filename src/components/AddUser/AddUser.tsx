@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form"
 import { IoIosCheckmarkCircleOutline } from "react-icons/io"
 import { Button } from "../Button/Button"
 import { Input } from "../Input/Input"
-import { Textarea } from "../Textarea/Textarea"
 import cls from "./AddUser.module.scss"
 
 interface AddAuthorProps {

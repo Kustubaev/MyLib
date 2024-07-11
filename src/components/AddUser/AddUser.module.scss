@@ -1,32 +1,30 @@
-.AddUser{
-        &__block{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+.AddUser {
+  &__block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-                &__col{
-                        width: 49%;
-                        
-                        div {
-                                margin-bottom: 20px !important;
+    &__col {
+      width: 49%;
 
-                                div {
-                                        margin: 0 !important;
-                                }
-                        }
+      div {
+        margin-bottom: 20px !important;
 
-                        &__element{
-                                margin-bottom: 20px;
-
-                                div {
-                                        // margin-bottom: 0px;
-
-                                }
-                        }
-                } 
+        div {
+          margin: 0 !important;
         }
+      }
 
-        &__btn {
+      &__element {
+        margin-bottom: 20px;
+
+        div {
+          // margin-bottom: 0px;
 
         }
+      }
+    }
+  }
+
+  &__btn {}
 }
