@@ -45,17 +45,29 @@
 
         margin-right: 20px;
 
+        margin-bottom: 20px;
+
         &__title {
           margin-right: 10px;
         }
 
-        &__text {}
+        &__text {
+          overflow-wrap: break-word;
+        }
       }
+    } 
+    &__text {
+      height: 100%;
+
+      overflow: hidden;
+      overflow-wrap: break-word;
     }
   }
 
   &__left {
     max-width: 20%;
+    display: flex;
+    align-items: center;
 
   }
 }

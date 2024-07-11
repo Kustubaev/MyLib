@@ -74,6 +74,10 @@ export const Books = () => {
             { value: "1", name: "Фёдор Михайлович Достоевский" },
             { value: "2", name: "Александр Сергеевич Пушкин" },
             { value: "3", name: "Лев Николаевич Толстой" },
+            { value: "4", name: "Харуки Мураками" },
+            { value: "5", name: "Елена Ферранте" },
+            { value: "6", name: "Салман Рушди" },
+            { value: "7", name: "Хан Канг" },
           ]}
         />
         <Select
@@ -82,9 +86,11 @@ export const Books = () => {
           label="Жанр"
           className={cls.select}
           options={[
-            { value: "1", name: "Рассказы" },
-            { value: "2", name: "Новелла" },
-            { value: "3", name: "Роман" },
+            { value: "1", name: "Роман" },
+            { value: "2", name: "Детектив" },
+            { value: "3", name: "Фэнтези" },
+            { value: "4", name: "Научная фантастика" },
+            { value: "5", name: "Психологический роман" },
           ]}
         />
         <Select

@@ -62,10 +62,6 @@ export const Card = ({ book }: CardProps) => {
         </div>
         {/* <div>{book.id}</div> */}
         <div className={cls.Card__right__text}>{book.content}</div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-        accusantium deserunt, id natus reprehenderit debitis numquam magni ut
-        assumenda mollitia eos eligendi ab fugit explicabo aperiam doloribus
-        voluptatibus consequatur praesentium?
       </div>
     </NextUiCard>
   )
