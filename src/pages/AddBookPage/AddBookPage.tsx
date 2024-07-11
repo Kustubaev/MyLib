@@ -16,6 +16,8 @@ import { AddGenre } from "../../components/AddGenre/AddGenre"
 import { PageTitle } from "../../components/PageTitle/PageTitle"
 import { Textarea } from "../../components/Textarea/Textarea"
 import { AddFile } from "../../components/AddFile/AddFile"
+import { useDispatch, useSelector } from "react-redux"
+import { addBook } from "../../features/booksSlice"
 
 interface SelectProps {
   value: number
@@ -38,6 +40,7 @@ export const AddBookPage = () => {
   const authorDisclosure = useDisclosure()
   const genreDisclosure = useDisclosure()
   const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
 
   const {
     handleSubmit,
@@ -48,10 +51,25 @@ export const AddBookPage = () => {
     reset,
   } = useForm()
 
+  const randomNumber = Math.floor(Math.random() * 100) + 20
+
   const onSubmit = handleSubmit(async (data) => {
     setLoading(true)
     setTimeout(() => {
       console.log(data)
+      const tempBook = {
+        ...data,
+        id: randomNumber,
+        authorId: parseInt(data.authorId),
+        genreId: parseInt(data.genreId),
+        dateCreated: "2022-06-30",
+        dateUpdated: "2022-06-30",
+        pageCount: parseInt(data.pageCount),
+        total_Copies: parseInt(data.total_Copies),
+      }
+      console.log(tempBook)
+
+      dispatch(addBook(tempBook))
       reset({
         title: "",
         total_Copies: "",
@@ -59,8 +77,10 @@ export const AddBookPage = () => {
         condition: "",
         content: "",
         genreId: "",
-        date: "",
-        file: "",
+        publishDate: "",
+        image: "",
+        publishHouse: "",
+        pageCount: "",
       })
       setLoading(false)
     }, 2000)
@@ -106,6 +126,13 @@ export const AddBookPage = () => {
                 type="number"
                 required="Обязательное поле"
               />
+              <Input
+                loading={loading}
+                control={control}
+                label="Количество страниц:"
+                name="pageCount"
+                type="number"
+              />
             </div>
             <div className={cls.AddBook__right__form__inputs__block}>
               <Textarea
@@ -129,13 +156,20 @@ export const AddBookPage = () => {
                 loading={loading}
                 control={control}
                 label="Дата публикации:"
-                name="date"
+                name="publishDate"
                 type="date"
                 required="Обязательное поле"
               />
+              <Input
+                loading={loading}
+                control={control}
+                label="Издательство:"
+                name="publishHouse"
+                type="string"
+              />
             </div>
           </div>
-          <AddFile control={control} name="file" loading={loading} />
+          <AddFile control={control} name="image" loading={loading} />
           <div className={cls.AddBook__right__form__addBtns}>
             <Button onClick={() => authorDisclosure.onOpen()}>
               Добавить автора

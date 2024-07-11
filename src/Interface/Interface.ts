@@ -4,9 +4,8 @@ export interface Book {
   content: string
   authorId: number
   genreId: number
-  dateCreated: Date
-  dateUpdated: Date
-  imageUrl: string
+  dateCreated: string
+  dateUpdated: string
   publishDate: string
   publishHouse: string
   pageCount: number

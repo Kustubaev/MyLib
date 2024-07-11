@@ -14,7 +14,7 @@ interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
 }
 
 export const Image: FC<ImageProps> = (props) => {
-  const pathDefImg = "./src/img/default.jpg"
+  const pathDefImg = "../src/img/default.jpg"
   const {
     path = pathDefImg,
     category = CategoryVariantsImg.MEDIUM__IMAGE,

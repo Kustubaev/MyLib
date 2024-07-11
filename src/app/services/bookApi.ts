@@ -1,4 +1,4 @@
-import { Book } from "../types"
+import { Book } from "../../Interface/Interface"
 import { api } from "./api"
 
 interface CreateBookDataProps {

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { userApi } from "../../app/services/userApi"
 import { RootState } from "../../app/store"
-import { User } from "../../app/types"
+import { User } from "../../Interface/Interface"
 
 interface InitialState {
   user: User | null

@@ -10,11 +10,16 @@ import {
 import { Card } from "../Card/Card"
 import { Select } from "../Select/Select"
 import cls from "./Books.module.scss"
+import { fillBook, selectBooks } from "../../features/booksSlice"
+import { useSelector } from "react-redux"
 
 export const Books = () => {
+  const { booksStore } = useSelector((state) => state?.books)
   const data: Book[] = useMemo(() => {
-    return [...BooksMock]
+    return [...booksStore]
   }, [])
+
+  console.log(data)
 
   const [books, setBooks] = useState<Book[]>([])
   const [sortedKey, setSortedKey] = useState({
