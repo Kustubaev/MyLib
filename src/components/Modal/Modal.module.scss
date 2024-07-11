@@ -1,6 +1,17 @@
 .Modal{
         &__form{
                 &__body{
+
+                        display: flex;
+                        flex-direction: column;
+                        align-items: end;
+                        justify-content: center;
+
+                        svg {   
+                                width: 30%;
+                                display: block;
+                                margin: 0 auto;
+                        }
                         
                         form {
                                 div {
@@ -16,6 +27,11 @@
                                         }
 
                                         
+                                }
+
+                                svg {
+                                        display: block;
+                                        margin: 0 auto;
                                 }
 
                                 button {
