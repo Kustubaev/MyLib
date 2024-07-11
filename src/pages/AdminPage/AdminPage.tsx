@@ -14,15 +14,13 @@ import { useDisclosure } from "@nextui-org/react"
 import { AddAuthor } from "../../components/AddAuthor/AddAuthor"
 import { AddGenre } from "../../components/AddGenre/AddGenre"
 import { PageTitle } from "../../components/PageTitle/PageTitle"
-import { Textarea } from "../../components/Textarea/Textarea"
-import { AddFile } from "../../components/AddFile/AddFile"
 
 interface SelectProps {
   value: number
   name: string
 }
 
-export const AddBookPage = () => {
+export const AdmninPage = () => {
   const genre = [
     { value: "1", name: "Рассказы" },
     { value: "2", name: "Новелла" },
@@ -60,16 +58,15 @@ export const AddBookPage = () => {
         content: "",
         genreId: "",
         date: "",
-        file: "",
       })
       setLoading(false)
-    }, 2000)
+    }, 3000)
   })
 
   return (
     <div className={cls.AddBook}>
       <div className={cls.AddBook__right}>
-        <PageTitle title={"Добавление новой книги"} />
+        <PageTitle title={'Добавление новой книги'}/>
         <form onSubmit={onSubmit} className={cls.AddBook__right__form}>
           <div className={cls.AddBook__right__form__inputs}>
             <div className={cls.AddBook__right__form__inputs__block}>
@@ -108,8 +105,7 @@ export const AddBookPage = () => {
               />
             </div>
             <div className={cls.AddBook__right__form__inputs__block}>
-              <Textarea
-                minRows={4}
+              <Input
                 loading={loading}
                 control={control}
                 label="Описание книги:"
@@ -135,7 +131,6 @@ export const AddBookPage = () => {
               />
             </div>
           </div>
-          <AddFile control={control} name="file" loading={loading} />
           <div className={cls.AddBook__right__form__addBtns}>
             <Button onClick={() => authorDisclosure.onOpen()}>
               Добавить автора
@@ -157,9 +152,7 @@ export const AddBookPage = () => {
         </form>
       </div>
       <div className={cls.AddBook__rules}>
-        <p className={cls.AddBook__rules__title}>
-          <b>Правила резервирования книг:</b>
-        </p>
+        <p className={cls.AddBook__rules__title}><b>Правила резервирования книг:</b></p>
         <ol className={cls.AddBook__rules__list}>
           <li>
             1. Если в списке читателей нет человека, который хочет взять книгу,
