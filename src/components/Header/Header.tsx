@@ -65,28 +65,10 @@ export const Header: FC = () => {
         <NavbarItem>
           <Button
             onClick={() => {
-              navigate("/books/reserve")
+              navigate("/admin")
             }}
           >
-            <span>Зарезервировать</span>
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            onClick={() => {
-              navigate("/books/return")
-            }}
-          >
-            <span>Возврат</span>
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            onClick={() => {
-              navigate("/books/add")
-            }}
-          >
-            <span>Добавление</span>
+            <span>Админка</span>
           </Button>
         </NavbarItem>
       </NavbarContent>
