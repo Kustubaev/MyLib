@@ -14,6 +14,7 @@ import { useDisclosure } from "@nextui-org/react"
 import { AddAuthor } from "../../components/AddAuthor/AddAuthor"
 import { AddGenre } from "../../components/AddGenre/AddGenre"
 import { PageTitle } from "../../components/PageTitle/PageTitle"
+import { Textarea } from "../../components/Textarea/Textarea"
 
 interface SelectProps {
   value: number
@@ -66,7 +67,7 @@ export const AddBookPage = () => {
   return (
     <div className={cls.AddBook}>
       <div className={cls.AddBook__right}>
-        <PageTitle title={'Добавление новой книги'}/>
+        <PageTitle title={"Добавление новой книги"} />
         <form onSubmit={onSubmit} className={cls.AddBook__right__form}>
           <div className={cls.AddBook__right__form__inputs}>
             <div className={cls.AddBook__right__form__inputs__block}>
@@ -105,7 +106,8 @@ export const AddBookPage = () => {
               />
             </div>
             <div className={cls.AddBook__right__form__inputs__block}>
-              <Input
+              <Textarea
+                minRows={4}
                 loading={loading}
                 control={control}
                 label="Описание книги:"
@@ -152,7 +154,9 @@ export const AddBookPage = () => {
         </form>
       </div>
       <div className={cls.AddBook__rules}>
-        <p className={cls.AddBook__rules__title}><b>Правила резервирования книг:</b></p>
+        <p className={cls.AddBook__rules__title}>
+          <b>Правила резервирования книг:</b>
+        </p>
         <ol className={cls.AddBook__rules__list}>
           <li>
             1. Если в списке читателей нет человека, который хочет взять книгу,
