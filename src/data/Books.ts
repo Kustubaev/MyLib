@@ -16,6 +16,7 @@ export const BooksMock: Book[] = [
     pageCount: 251,
     total_Copies: 1000,
     condition: "Отличное состояние",
+    image: "1.jpg",
   },
   {
     id: 2,
@@ -32,6 +33,7 @@ export const BooksMock: Book[] = [
     pageCount: 99,
     total_Copies: 1000,
     condition: "Отличное состояние",
+    image: "20.jpg",
   },
   {
     id: 3,
@@ -48,6 +50,7 @@ export const BooksMock: Book[] = [
     pageCount: 150,
     total_Copies: 1000,
     condition: "Отличное состояние",
+    image: "3.jpg",
   },
   {
     id: 4,
@@ -64,6 +67,7 @@ export const BooksMock: Book[] = [
     pageCount: 10,
     total_Copies: 1000,
     condition: "Отличное состояние",
+    image: "1.jpg",
   },
   {
     id: 5,
@@ -80,6 +84,7 @@ export const BooksMock: Book[] = [
     pageCount: 350,
     total_Copies: 1000,
     condition: "Ужаное состояние",
+    image: "2.jpg",
   },
   {
     id: 6,
@@ -96,5 +101,6 @@ export const BooksMock: Book[] = [
     pageCount: 300,
     total_Copies: 1000,
     condition: "Отличное состояние",
+    image: "3.jpg",
   },
 ]

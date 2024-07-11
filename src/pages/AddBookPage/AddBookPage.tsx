@@ -15,6 +15,7 @@ import { AddAuthor } from "../../components/AddAuthor/AddAuthor"
 import { AddGenre } from "../../components/AddGenre/AddGenre"
 import { PageTitle } from "../../components/PageTitle/PageTitle"
 import { Textarea } from "../../components/Textarea/Textarea"
+import { AddFile } from "../../components/AddFile/AddFile"
 
 interface SelectProps {
   value: number
@@ -59,9 +60,10 @@ export const AddBookPage = () => {
         content: "",
         genreId: "",
         date: "",
+        file: "",
       })
       setLoading(false)
-    }, 3000)
+    }, 2000)
   })
 
   return (
@@ -77,7 +79,7 @@ export const AddBookPage = () => {
                 label="Название книги:"
                 name="title"
                 type="text"
-                required="Обязательное поле"
+                //required="Обязательное поле"
               />
               <Input
                 loading={loading}
@@ -85,7 +87,7 @@ export const AddBookPage = () => {
                 label="Количество копий:"
                 name="total_Copies"
                 type="number"
-                required="Обязательное поле"
+                //required="Обязательное поле"
               />
               <SelectForm
                 loading={loading}
@@ -93,7 +95,7 @@ export const AddBookPage = () => {
                 control={control}
                 label="Автор:"
                 name="authorId"
-                required="Обязательное поле"
+                //required="Обязательное поле"
                 options={author}
               />
               <Input
@@ -102,7 +104,7 @@ export const AddBookPage = () => {
                 label="Серийный номер:"
                 name="condition"
                 type="number"
-                required="Обязательное поле"
+                //required="Обязательное поле"
               />
             </div>
             <div className={cls.AddBook__right__form__inputs__block}>
@@ -120,7 +122,7 @@ export const AddBookPage = () => {
                 control={control}
                 label="Жанр:"
                 name="genreId"
-                required="Обязательное поле"
+                //required="Обязательное поле"
                 options={genre}
               />
               <Input
@@ -129,10 +131,11 @@ export const AddBookPage = () => {
                 label="Дата публикации:"
                 name="date"
                 type="date"
-                required="Обязательное поле"
+                //required="Обязательное поле"
               />
             </div>
           </div>
+          <AddFile control={control} name="file" loading={loading} />
           <div className={cls.AddBook__right__form__addBtns}>
             <Button onClick={() => authorDisclosure.onOpen()}>
               Добавить автора

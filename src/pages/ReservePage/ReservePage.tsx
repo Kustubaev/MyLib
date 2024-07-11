@@ -96,7 +96,7 @@ export const ReservePage = () => {
         comment: "",
       })
       setLoading(false)
-    }, 3000)
+    }, 2000)
   })
 
   return (

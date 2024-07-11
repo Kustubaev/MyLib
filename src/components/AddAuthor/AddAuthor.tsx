@@ -29,8 +29,8 @@ export const AddAuthor: FC<AddAuthorProps> = (props) => {
       setSent(true)
       setTimeout(() => {
         onClose()
-      }, 2000)
-    }, 3000)
+      }, 1500)
+    }, 2000)
   })
   return (
     <>

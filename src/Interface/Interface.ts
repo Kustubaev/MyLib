@@ -12,6 +12,7 @@ export interface Book {
   pageCount: number
   total_Copies: number
   condition: string
+  image: string
 }
 
 export interface User {

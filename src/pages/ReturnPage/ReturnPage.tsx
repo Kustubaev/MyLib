@@ -76,14 +76,14 @@ export const ReturnPage = () => {
         comment: "",
       })
       setLoading(false)
-    }, 3000)
+    }, 2000)
   })
 
   return (
     <div className={cls.RerurnPage}>
       <div className={cls.RerurnPage__left}>
         <div className={cls.RerurnPage__left__title}>
-          <PageTitle title={'Возврат книги'} />
+          <PageTitle title={"Возврат книги"} />
         </div>
         <form className={cls.RerurnPage__left__form} onSubmit={onSubmit}>
           <div className={cls.RerurnPage__left__form__block}>
@@ -97,12 +97,20 @@ export const ReturnPage = () => {
               options={userOptions}
             />
             <div className={cls.RerurnPage__left__form__block__info}>
-              <div><b>ФИО: </b>{userValue?.fullName}</div>
-              <div><b>Адресс: </b>{userValue?.address}</div>
-              <div><b>Номер телефона: </b>{userValue?.phoneNumber}</div>
+              <div>
+                <b>ФИО: </b>
+                {userValue?.fullName}
+              </div>
+              <div>
+                <b>Адресс: </b>
+                {userValue?.address}
+              </div>
+              <div>
+                <b>Номер телефона: </b>
+                {userValue?.phoneNumber}
+              </div>
             </div>
           </div>
-          
 
           <div className={cls.RerurnPage__left__form__block}>
             <SelectForm
@@ -115,13 +123,21 @@ export const ReturnPage = () => {
               options={bookOptions}
             />
             <div className={cls.RerurnPage__left__form__block__info}>
-              <div><b>Название: </b>{bookValue?.title}</div>
-              <div><b>Описание: </b>{bookValue?.content}</div>
-              <div><b>Дата публикации: </b>{bookValue?.publishDate}</div>
+              <div>
+                <b>Название: </b>
+                {bookValue?.title}
+              </div>
+              <div>
+                <b>Описание: </b>
+                {bookValue?.content}
+              </div>
+              <div>
+                <b>Дата публикации: </b>
+                {bookValue?.publishDate}
+              </div>
             </div>
           </div>
 
-          
           <div className={cls.RerurnPage__left__form__block}>
             <Input
               loading={loading}
@@ -133,7 +149,9 @@ export const ReturnPage = () => {
             />
             {bookValue ? (
               <div className={cls.RerurnPage__left__form__block__info}>
-                <div><b>Состояние книги при выдаче:</b> {commentValueOld}</div>
+                <div>
+                  <b>Состояние книги при выдаче:</b> {commentValueOld}
+                </div>
               </div>
             ) : null}
           </div>
@@ -147,8 +165,7 @@ export const ReturnPage = () => {
               type="text"
             />
           </div>
-          
-          
+
           <div className={cls.RerurnPage__left__form__btn}>
             <Button
               loading={loading}
@@ -163,7 +180,7 @@ export const ReturnPage = () => {
       </div>
       <div className={cls.RerurnPage__right}>
         <div className={cls.RerurnPage__right__title}>
-            <b>Правила резервирования книг:</b>
+          <b>Правила резервирования книг:</b>
         </div>
         <ol className={cls.RerurnPage__right__rules}>
           <li>
