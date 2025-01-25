@@ -1,10 +1,10 @@
 import { Card as NextUiCard } from "@nextui-org/react"
+import { useMemo } from "react"
 import { useNavigate } from "react-router-dom"
+import { Authors, AuthorsMock } from "../../data/Authors"
 import { Book } from "../../Interface/Interface"
 import { Image } from "../Image/Image"
 import cls from "./Card.module.scss"
-import { Authors, AuthorsMock } from "../../data/Authors"
-import { useMemo } from "react"
 
 interface CardProps {
   book: Book

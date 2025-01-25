@@ -54,14 +54,14 @@ export const ReservePage = () => {
       setAuthorsOptionss(
         [...authors].map((item, index) => ({
           value: index,
-          name: `${item.name}`,
+          name: `${item?.name}`,
         })),
       )
     books &&
       setBookOptions(
         [...books].map((item, index) => ({
           value: index,
-          name: `${item.title} - ${authors[item.authorId].name} - ${
+          name: `${item.title} - ${authors[item.authorId]?.name} - ${
             item.publishDate
           }`,
         })),
@@ -199,7 +199,7 @@ export const ReservePage = () => {
               type="submit"
               onClick={onSubmit}
             >
-              Добавить Книгу
+              Зарезервировать Книгу
             </Button>
           </div>
         </form>

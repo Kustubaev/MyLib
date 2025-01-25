@@ -3,13 +3,32 @@
 }
 
 .label {
+  display: block;
+  width: 49%;
+  height: 55px;
   color: #71717A;
   border: 2px solid #E4E4E7;
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 14px;
 
   &__onBlur {
     color: #C0C0C4;
     border: 2px solid #E4E4E7;
   }
+}
+
+.image {
+  margin: 0 auto;
+  border-radius: 1rem;
+  width: 200px;
+  aspect-ratio: 1/ 1.5;
+  object-fit: cover;
+  object-position: center center;
+  background: linear-gradient(14deg, rgba(242, 242, 227, 1) 0%, rgba(255, 213, 184, 1) 100%);
+  border: 2px solid #E4E4E7;
+}
+
+.box {
+  display: flex;
 }

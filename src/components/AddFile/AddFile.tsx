@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react"
 import { Control, useController } from "react-hook-form"
 import cls from "./AddFile.module.scss"
+import { Image } from "../Image/Image"
 
 interface AddFileProps {
   onImageSelect?: (file: File | null) => void
@@ -44,7 +45,7 @@ export const AddFile: FC<AddFileProps> = (props) => {
   const classNameLabel = `${cls.label} ${loading ? cls.label__onBlur : null}`
 
   return (
-    <div className="custom-image-uploader">
+    <div className={cls.box}>
       <input
         className={cls.input}
         disabled={loading}
@@ -58,7 +59,13 @@ export const AddFile: FC<AddFileProps> = (props) => {
           ? "Выбранное изображение: " + selectedImage.name
           : "Добавить изображение:"}
       </label>
-      {selectedImage && <img src={URL.createObjectURL(selectedImage)} alt="" />}
+      {selectedImage && (
+        <img
+          src={URL.createObjectURL(selectedImage)}
+          alt=""
+          className={cls.image}
+        />
+      )}
     </div>
   )
 }
